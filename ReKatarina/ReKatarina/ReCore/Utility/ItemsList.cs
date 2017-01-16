@@ -12,9 +12,9 @@ namespace ReKatarina.ReCore.Utility
         public static List<IItem> modules = new List<IItem>();
         public static void Initialize()
         {
-            if (Managers.SummonerManager.PlayerHasBarrier) modules.Add(new Core.Items.OffensiveItems());
-            if (Managers.SummonerManager.PlayerHasCleanse) modules.Add(new Core.Items.DeffensiveItems());
-            if (Managers.SummonerManager.PlayerHasExhaust) modules.Add(new Core.Items.ConsumerItems());
+            modules.Add(new Core.Items.OffensiveItems());
+            modules.Add(new Core.Items.DeffensiveItems());
+            modules.Add(new Core.Items.ConsumerItems());
         }
     }
 }

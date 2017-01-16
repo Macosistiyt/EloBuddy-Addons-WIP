@@ -1,4 +1,5 @@
-﻿using ReKatarina.ReCore.Utility;
+﻿using EloBuddy;
+using ReKatarina.ReCore.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;

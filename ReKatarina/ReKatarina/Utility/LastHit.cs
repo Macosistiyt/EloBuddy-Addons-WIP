@@ -27,7 +27,7 @@ namespace ReKatarina.Utility
 
         public static void OnUnkillableMinion(Obj_AI_Base target, Orbwalker.UnkillableMinionArgs args)
         {
-            if (ConfigList.Farm.LastHitQ && SpellManager.Q.IsReady() && !Damage.HasRBuff())
+            if (ConfigList.Farm.LastHitQ && SpellManager.Q.IsReady() && !Damage.HasRBuff() && Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.LaneClear | Orbwalker.ActiveModes.LastHit))
                 if (target.IsInRange(Player.Instance, SpellManager.Q.Range))
                     SpellManager.Q.Cast(target);
         }

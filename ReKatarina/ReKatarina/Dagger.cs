@@ -19,8 +19,9 @@ namespace ReKatarina
         public static Vector3 GetClosestDagger()
         {
             var dagger = GetDaggers();
-            if (dagger.Count() <= 0 || dagger.Any() || dagger == null) return new Vector3();
-            return GetDaggers().Where(p => p.Distance(Player.Instance) >= 125).OrderBy(p => p.Distance(Player.Instance.Position)).FirstOrDefault().Position;
+            if (!dagger.Any() || dagger == null || dagger.Count() <= 0) return new Vector3();
+            var t = dagger.Where(p => p.Distance(Player.Instance) >= 125).OrderBy(p => p.Distance(Player.Instance.Position)).FirstOrDefault();
+            return t == null ? new Vector3() : t.Position;
         }
     }
 }

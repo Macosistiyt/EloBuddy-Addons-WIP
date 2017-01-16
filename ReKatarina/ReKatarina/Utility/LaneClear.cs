@@ -25,7 +25,6 @@ namespace ReKatarina.Utility
                 {
                     if (Player.Instance.CountEnemyMinionsInRange(SpellManager.W.Range) >= 5)
                         SpellManager.W.Cast();
-                    
                 }
 
                 if (ConfigList.Farm.FarmE && SpellManager.E.IsReady())

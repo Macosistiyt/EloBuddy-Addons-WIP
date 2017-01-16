@@ -67,11 +67,14 @@ namespace ReKatarina.Utility
 
             if (SpellManager.W.IsLearned && !SpellManager.W.IsOnCooldown && ConfigList.Combo.ComboW)
             {
-                SpellManager.W.Cast();
+                if (t.IsInRange(Player.Instance.Position, SpellManager.W.Range))
+                    SpellManager.W.Cast();
             }
 
             if (SpellManager.R.IsLearned && !SpellManager.R.IsOnCooldown && ConfigList.Combo.ComboR)
             {
+                if (Player.Instance.CountEnemyChampionsInRange(ConfigList.Combo.MaxRCastRange) < ConfigList.Combo.MinToUseR) return;
+                if (Damage.GetQDamage(t) + Damage.GetWDamage(t) + Damage.GetEDamage(t) + Player.Instance.GetAutoAttackDamage(t, true) >= t.TotalShieldHealth()) return;
                 SpellManager.R.Cast();
                 Damage.FreezePlayer();
             }
@@ -144,6 +147,7 @@ namespace ReKatarina.Utility
 
             if (SpellManager.R.IsLearned && !SpellManager.R.IsOnCooldown && ConfigList.Combo.ComboR)
             {
+                if (Player.Instance.CountEnemyChampionsInRange(ConfigList.Combo.MaxRCastRange) < ConfigList.Combo.MinToUseR) return;
                 if (Damage.GetQDamage(t) + Damage.GetWDamage(t) + Damage.GetEDamage(t) + Player.Instance.GetAutoAttackDamage(t, true) >= t.TotalShieldHealth()) return;
                 SpellManager.R.Cast();
                 Damage.FreezePlayer();
