@@ -2,12 +2,12 @@
 using EloBuddy.SDK;
 using EloBuddy.SDK.Menu;
 using EloBuddy.SDK.Menu.Values;
-using ReKatarina.ReCore.ConfigList;
-using ReKatarina.ReCore.Managers;
-using ReKatarina.ReCore.Utility;
+using ReGaren.ReCore.ConfigList;
+using ReGaren.ReCore.Managers;
+using ReGaren.ReCore.Utility;
 using System;
 
-namespace ReKatarina.ReCore
+namespace ReGaren.ReCore
 {
     class Loader
     {

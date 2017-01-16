@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Ogólne informacje o zestawie są kontrolowane poprzez następujący 
 // zbiór atrybutów. Zmień wartości tych atrybutów by zmodyfikować informacje
 // powiązane z zestawem.
-[assembly: AssemblyTitle("ReKatarina")]
+[assembly: AssemblyTitle("ReGaren")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Zierk59")]
-[assembly: AssemblyProduct("ReKatarina")]
-[assembly: AssemblyCopyright("Copyright ©  2016 - 2017")]
+[assembly: AssemblyProduct("ReGaren")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Można określać wszystkie wartości lub używać domyślnych numerów kompilacji i poprawki 
 // poprzez użycie '*', jak pokazane jest poniżej:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("7.1.4.0")]
-[assembly: AssemblyFileVersion("7.1.4.0")]
+[assembly: AssemblyVersion("7.1.1.0")]
+[assembly: AssemblyFileVersion("7.1.1.0")]
