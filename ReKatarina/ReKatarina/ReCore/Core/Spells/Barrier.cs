@@ -10,13 +10,13 @@ namespace ReKatarina.ReCore.Core.Spells
     {
         public void Execute()
         {
-            if (Player.Instance.HealthPercent > MenuHelper.GetSliderValue(Summoners.Menu, "barrierHp"))
+            if (Player.Instance.HealthPercent > MenuHelper.GetSliderValue(Summoners.Menu, "Summoners.Barrier.Health"))
                 return;
 
             var enemies = Player.Instance.CountEnemyChampionsInRange(300);
-            if (MenuHelper.GetCheckBoxValue(Summoners.Menu, "barrierDangerous"))
+            if (MenuHelper.GetCheckBoxValue(Summoners.Menu, "Summoners.Barrier.Dangerous"))
             {
-                if (enemies > 0 && Player.Instance.IsInDanger(MenuHelper.GetSliderValue(Summoners.Menu, "barrierHp")))
+                if (enemies > 0 && Player.Instance.IsInDanger(MenuHelper.GetSliderValue(Summoners.Menu, "Summoners.Barrier.Health")))
                     SummonerManager.Barrier.Cast();
             }
             else
@@ -25,7 +25,7 @@ namespace ReKatarina.ReCore.Core.Spells
 
         public bool ShouldGetExecuted()
         {
-            if (!SummonerManager.Barrier.IsReady() || !MenuHelper.GetCheckBoxValue(Summoners.Menu, "enableBarrier"))
+            if (!SummonerManager.Barrier.IsReady() || !MenuHelper.GetCheckBoxValue(Summoners.Menu, "Summoners.Barrier.Status"))
                 return false;
             return true;
         }

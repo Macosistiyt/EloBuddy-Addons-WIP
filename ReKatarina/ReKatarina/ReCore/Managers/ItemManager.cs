@@ -8,8 +8,21 @@ using System.Threading.Tasks;
 
 namespace ReKatarina.ReCore.Managers
 {
-    class ItemManager
+    static class ItemManager
     {
+        private static Dictionary<ItemId, int> LastUse = new Dictionary<ItemId, int>();
+        public static int GetLastUse(ItemId item)
+        {
+            if (LastUse.ContainsKey(item)) return LastUse[item];
+            return 0;
+        }
+
+        public static void SetLastUse(ItemId item)
+        {
+            if (LastUse.ContainsKey(item)) LastUse[item] = EloBuddy.SDK.Core.GameTickCount;
+            else LastUse.Add(item, EloBuddy.SDK.Core.GameTickCount);
+        }
+
         public static List<Item> OffensiveItems = new List<Item>
         {
             new Item(ItemId.Titanic_Hydra, Player.Instance.GetAutoAttackRange()),
@@ -49,6 +62,11 @@ namespace ReKatarina.ReCore.Managers
             new Item(ItemId.Mercurial_Scimitar),
             new Item(ItemId.Quicksilver_Sash),
         };
+
+        public static bool IsUsingPotion(this Obj_AI_Base target)
+        {
+            return target.HasBuff("ItemDarkCrystalFlask") || target.HasBuff("ItemMiniRegenPotion") || target.HasBuff("ItemCrystalFlaskJungle") || target.HasBuff("Health Potion");
+        }
 
         public static void Initialize()
         {

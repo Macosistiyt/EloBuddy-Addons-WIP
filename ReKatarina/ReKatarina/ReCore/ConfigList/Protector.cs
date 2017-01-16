@@ -17,15 +17,15 @@ namespace ReKatarina.ReCore.ConfigList
 
             if (Managers.SummonerManager.PlayerHasHeal)
             {
-                Menu.CreateCheckBox("Enable heal", "enableHeal");
+                Menu.CreateCheckBox("Enable heal", "Protector.Heal.Status");
                 Menu.AddSeparator();
-                Menu.CreateCheckBox("Heal only dangerous", "healDangerous");
-                Menu.CreateSlider("Heal if my HP <= {0}%", "healMe", 10);
-                Menu.CreateSlider("Heal if ally HP <= {0}%", "healAlly", 10);
+                Menu.CreateCheckBox("Heal only dangerous", "Protector.Heal.Dangerous");
+                Menu.CreateSlider("Heal if my HP <= {0}%", "Protector.Heal.Health.Me", 10);
+                Menu.CreateSlider("Heal if ally HP <= {0}%", "Protector.Heal.Health.Ally", 10);
                 Menu.AddSeparator();
                 Menu.AddLabel("Whitelist");
                 foreach (var ally in EntityManager.Heroes.Allies.Where(a => !a.IsMe))
-                    Menu.CreateCheckBox(ally.ChampionName + " (" + ally.Name + ")", "useHealOn" + ally.ChampionName);
+                    Menu.CreateCheckBox(ally.ChampionName + " (" + ally.Name + ")", "Protector.Heal.Use." + ally.ChampionName);
             }
             else
             {

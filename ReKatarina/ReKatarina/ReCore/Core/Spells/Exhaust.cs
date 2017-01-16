@@ -17,14 +17,14 @@ namespace ReKatarina.ReCore.Core.Spells
                     Where(e =>
                         !e.IsDead &&
                         e.IsInRange(e, SummonerManager.Exhaust.Range) &&
-                        e.TotalShieldHealth() <= MenuHelper.GetSliderValue(Summoners.Menu, "exhaustHp"));
+                        e.TotalShieldHealth() <= MenuHelper.GetSliderValue(Summoners.Menu, "Summoners.Exhaust.Health"));
                 SummonerManager.Exhaust.Cast(enemy.FirstOrDefault());
             }
         }
 
         public bool ShouldGetExecuted()
         {
-            if (!SummonerManager.Exhaust.IsReady() || !MenuHelper.GetCheckBoxValue(Summoners.Menu, "enableExhaust"))
+            if (!SummonerManager.Exhaust.IsReady() || !MenuHelper.GetCheckBoxValue(Summoners.Menu, "Summoners.Exhaust.Status"))
                 return false;
             return true;
         }

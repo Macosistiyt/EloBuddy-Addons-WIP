@@ -21,20 +21,20 @@ namespace ReKatarina.ReCore.Core.Spells
         }
         public void Execute()
         {
-            if (SummonerManager.Smite.Handle.Ammo <= MenuHelper.GetSliderValue(Summoners.Menu, "keepSmite")) return;
+            if (SummonerManager.Smite.Handle.Ammo <= MenuHelper.GetSliderValue(Summoners.Menu, "Summoners.Smite.Keep.Count")) return;
             Obj_AI_Minion Monster;
             Monster = EloBuddy.SDK.EntityManager.MinionsAndMonsters.GetJungleMonsters().
                         FirstOrDefault(m => Managers.EntityManager.MonsterSmiteables.Contains(m.BaseSkinName) &&
-                                   Summoners.Menu.GetCheckBoxValue("smiteMonster" + m.BaseSkinName) &&
-                                   m.TotalShieldHealth() <= Managers.EntityManager.GetSmiteDamage() - Summoners.Menu.GetSliderValue("substractDamage")              
+                                   Summoners.Menu.GetCheckBoxValue("Smite.Monster." + m.BaseSkinName) &&
+                                   m.TotalShieldHealth() <= Managers.EntityManager.GetSmiteDamage() - Summoners.Menu.GetSliderValue("Summoners.Smite.Substract")              
                         );
             if (Monster != null)
                 SummonerManager.Smite.Cast(Monster);
 
-            if (!Summoners.Menu.GetCheckBoxValue("enableChampSmite")) return;
-            if (SummonerManager.Smite.Handle.Ammo <= MenuHelper.GetSliderValue(Summoners.Menu, "keepSmite")) return;
+            if (!Summoners.Menu.GetCheckBoxValue("Summoners.Smite.Champions")) return;
+            if (SummonerManager.Smite.Handle.Ammo <= MenuHelper.GetSliderValue(Summoners.Menu, "Summoners.Smite.Keep.Count")) return;
 
-            if (Summoners.Menu.GetCheckBoxValue("KsWithSmite"))
+            if (Summoners.Menu.GetCheckBoxValue("Summoners.Smite.KillSteal"))
             {
                 SummonerManager.SmiteType smiteType = SummonerManager.SmiteType.None;
                 switch (SummonerManager.Smite.Handle.Name)
@@ -45,7 +45,7 @@ namespace ReKatarina.ReCore.Core.Spells
                 if (smiteType != SummonerManager.SmiteType.None)
                 {
                     Obj_AI_Base ks = EloBuddy.SDK.EntityManager.Heroes.Enemies.FirstOrDefault(p =>
-                                        Prediction.Health.GetPrediction(p, Game.Ping) <= Managers.EntityManager.GetSmiteKSDamage(smiteType) - Summoners.Menu.GetSliderValue("substractDamage") &&
+                                        Prediction.Health.GetPrediction(p, Game.Ping) <= Managers.EntityManager.GetSmiteKSDamage(smiteType) - Summoners.Menu.GetSliderValue("Summoners.Smite.Substract") &&
                                         p.IsValidTarget(SummonerManager.Smite.Range)
                                         );
                     if (ks != null)
@@ -53,18 +53,18 @@ namespace ReKatarina.ReCore.Core.Spells
                 }
             }
 
-            if (SummonerManager.Smite.Handle.Ammo <= MenuHelper.GetSliderValue(Summoners.Menu, "keepSmite")) return;
+            if (SummonerManager.Smite.Handle.Ammo <= MenuHelper.GetSliderValue(Summoners.Menu, "Summoners.Smite.Keep.Count")) return;
 
             Obj_AI_Base target = TargetSelector.GetTarget(SummonerManager.Smite.Range, DamageType.Mixed);
             if (target == null || !Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo)) return;
             switch (SummonerManager.Smite.Handle.Name)
             {
                 case "S5_SummonerSmitePlayerGanker": // Blue Smite
-                    if (target.HealthPercent <= Summoners.Menu.GetSliderValue("smiteChampsHp") && target.IsInAutoAttackRange(Player.Instance))
+                    if (target.HealthPercent <= Summoners.Menu.GetSliderValue("Summoners.Smite.Champions.Health") && target.IsInAutoAttackRange(Player.Instance))
                         SummonerManager.Smite.Cast(target);
                     break;
                 case "S5_SummonerSmiteDuel": // Red Smite
-                    if (target.HealthPercent <= Summoners.Menu.GetSliderValue("smiteChampsHp") && target.IsInRange(Player.Instance, SummonerManager.Smite.Range / 2))
+                    if (target.HealthPercent <= Summoners.Menu.GetSliderValue("Summoners.Smite.Champions.Health") && target.IsInRange(Player.Instance, SummonerManager.Smite.Range / 2))
                         SummonerManager.Smite.Cast(target);
                     break;
                 default:
@@ -74,24 +74,24 @@ namespace ReKatarina.ReCore.Core.Spells
 
         public bool ShouldGetExecuted()
         {
-            if (!SummonerManager.Smite.IsReady() || SummonerManager.Smite.IsOnCooldown || !MenuHelper.GetKeyBindValue(Summoners.Menu, "smiteKeybind"))
+            if (!SummonerManager.Smite.IsReady() || SummonerManager.Smite.IsOnCooldown || !MenuHelper.GetKeyBindValue(Summoners.Menu, "Summoners.Smite.Keybind"))
                 return false;
             return true;
         }
 
         public void OnDraw()
         {
-            if (!MenuHelper.GetKeyBindValue(Summoners.Menu, "smiteKeybind")) return;
-            if (Summoners.Menu.GetCheckBoxValue("drawSmiteRange"))
+            if (!MenuHelper.GetKeyBindValue(Summoners.Menu, "Summoners.Smite.Keybind")) return;
+            if (Summoners.Menu.GetCheckBoxValue("Summoners.Smite.Draw.Range"))
             {
                 Circle.Draw(SharpDX.Color.Blue, SummonerManager.Smite.Range, Player.Instance);
             }
-            if (Summoners.Menu.GetCheckBoxValue("drawSmiteStatus"))
+            if (Summoners.Menu.GetCheckBoxValue("Summoners.Smite.Draw.Status"))
             {
                 SmiteStatusText.Position = Player.Instance.Position.WorldToScreen() - new Vector2(SmiteStatusText.Bounding.Width / 2f, -40);
                 SmiteStatusText.TextValue = "Smite status";
                 int charges = SummonerManager.Smite.Handle.Ammo;
-                if (charges <= MenuHelper.GetSliderValue(Summoners.Menu, "keepSmite") && charges != 0)
+                if (charges <= MenuHelper.GetSliderValue(Summoners.Menu, "Summoners.Smite.Keep.Count") && charges != 0)
                 {
                     SmiteStatusText.TextValue += " - KEEP SMITE";
                     SmiteStatusText.Color = System.Drawing.Color.Orange;
@@ -119,7 +119,7 @@ namespace ReKatarina.ReCore.Core.Spells
 
         public void OnEndScene()
         {
-            if (Summoners.Menu.GetCheckBoxValue("drawSmiteDamage") && SummonerManager.Smite.IsReady() && !SummonerManager.Smite.IsOnCooldown)
+            if (Summoners.Menu.GetCheckBoxValue("Summoners.Smite.Draw.Damage") && SummonerManager.Smite.IsReady() && !SummonerManager.Smite.IsOnCooldown)
             {
                 foreach (var unit in EloBuddy.SDK.EntityManager.MinionsAndMonsters.GetJungleMonsters().Where(m => m.IsHPBarRendered && !m.Name.Contains("Mini") && m.IsValidTarget(SummonerManager.Smite.Range + 350)))
                 {
@@ -203,7 +203,7 @@ namespace ReKatarina.ReCore.Core.Spells
         private static void DrawSmiteDamage(Obj_AI_Base unit)
         {
             var barPos = unit.HPBarPosition;
-            bool killable = unit.Health < Managers.EntityManager.GetSmiteDamage() - Summoners.Menu.GetSliderValue("substractDamage") ? true : false;
+            bool killable = unit.Health < Managers.EntityManager.GetSmiteDamage() - Summoners.Menu.GetSliderValue("Summoners.Smite.Substract") ? true : false;
             var percentHealthAfterDamage = Math.Max(0, unit.Health - Managers.EntityManager.GetSmiteDamage()) /
                                            unit.MaxHealth;
             var currentHealthPercentage = unit.Health /

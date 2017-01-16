@@ -22,7 +22,7 @@ namespace ReKatarina.ReCore.Core.Spells
 
         public bool ShouldGetExecuted()
         {
-            if (!SummonerManager.Snowball.IsReady() || !MenuHelper.GetCheckBoxValue(Summoners.Menu, "enableSnowball") || SummonerManager.Snowball.Name.ToLower().Contains("snowballfollowupcast"))
+            if (!SummonerManager.Snowball.IsReady() || !MenuHelper.GetCheckBoxValue(Summoners.Menu, "Summoners.Snowball.Status") || SummonerManager.Snowball.Name.ToLower().Contains("snowballfollowupcast"))
                 return false;
             return true;
         }
