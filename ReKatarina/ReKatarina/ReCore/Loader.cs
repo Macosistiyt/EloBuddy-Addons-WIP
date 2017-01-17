@@ -39,7 +39,7 @@ namespace ReKatarina.ReCore
 
         private static void OnTick(EventArgs args)
         {
-            if (Player.Instance.IsDead || Player.Instance.IsRecalling() || !Status.CurrentValue)
+            if (Player.Instance.IsDead || Player.Instance.IsRecalling() || !Status.CurrentValue || !TickLimiter.Check())
                 return;
 
             Core.SummonerUpdater.Update();

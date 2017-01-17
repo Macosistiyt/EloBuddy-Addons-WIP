@@ -1,13 +1,22 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
+using SharpDX;
 using System;
+using System.Linq;
 
 namespace ReKatarina
 {
+    static class Extensions
+    {
+        public static bool IsUnderEnemyTurret(this Vector3 d)
+        {
+            return EntityManager.Turrets.Enemies.Any((Obj_AI_Turret turret) => turret.IsInRange(d, turret.GetAutoAttackRange(null)));
+        }
+    }
+
     class Damage
     {
         public static readonly Random getrandom = new Random();
-
         public static double GetQDamage(Obj_AI_Base target)
         {
             if (SpellManager.Q.IsReady())

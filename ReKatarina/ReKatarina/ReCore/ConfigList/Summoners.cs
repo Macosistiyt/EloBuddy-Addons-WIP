@@ -19,17 +19,17 @@ namespace ReKatarina.ReCore.ConfigList
             {
                 Menu.AddGroupLabel("Smite");
                 Menu.CreateKeyBind("Enable smite", "Summoners.Smite.Keybind", 'S', 'B');
-                Menu.AddSeparator();
+                Menu.AddSeparator(10);
                 Menu.CreateCheckBox("Draw smite range", "Summoners.Smite.Draw.Range", false);
                 Menu.CreateCheckBox("Draw smite status", "Summoners.Smite.Draw.Status");
                 Menu.CreateCheckBox("Draw smite damage", "Summoners.Smite.Draw.Damage");
-                Menu.AddSeparator();
+                Menu.AddSeparator(10);
                 Menu.CreateSlider("Keep {0} smite's", "Summoners.Smite.Keep.Count", 1, 0, 2);
                 Menu.CreateSlider("Subtract {0} from damage calculations", "Summoners.Smite.Substract", 5, 0, 35);
                 Menu.CreateCheckBox("Use smite on champions", "Summoners.Smite.Champions");
                 Menu.CreateSlider("Smite if enemies HP <= {0}%", "Summoners.Smite.Champions.Health", 45, 0, 100);
                 Menu.CreateCheckBox("KS with smite", "Summoners.Smite.KillSteal");
-                Menu.AddSeparator();
+                Menu.AddSeparator(10);
                 switch (Game.MapId)
                 {
                     case GameMapId.SummonersRift:
@@ -60,7 +60,7 @@ namespace ReKatarina.ReCore.ConfigList
                         Menu.CreateCheckBox("Smite Wraith", "Smite.Monster." + "TTNWraith");
                         break;
                 }
-                Menu.AddSeparator();
+                Menu.AddSeparator(10);
             }
             #endregion
             #region Ignite
@@ -70,7 +70,7 @@ namespace ReKatarina.ReCore.ConfigList
                 Menu.CreateCheckBox("Enable ignite", "Summoners.Ignite.Status");
                 Menu.CreateCheckBox("KS with ignite", "Summoners.Ignite.KillSteal");
                 Menu.CreateSlider("Ignite if enemies HP <= {0}%", "Summoners.Ignite.Health", 15);
-                Menu.AddSeparator();
+                Menu.AddSeparator(10);
             }
             #endregion
             #region Exhaust
@@ -79,7 +79,7 @@ namespace ReKatarina.ReCore.ConfigList
                 Menu.AddGroupLabel("Exhaust");
                 Menu.CreateCheckBox("Enable exhaust", "Summoners.Exhaust.Status");
                 Menu.CreateSlider("Exhaust if enemies HP <= {0}%", "Summoners.Exhaust.Health", 35);
-                Menu.AddSeparator();
+                Menu.AddSeparator(10);
             }
             #endregion
             #region Heal
@@ -87,7 +87,7 @@ namespace ReKatarina.ReCore.ConfigList
             {
                 Menu.AddGroupLabel("Heal");
                 Menu.AddLabel("Heal can be configurable in Protector section.");
-                Menu.AddSeparator();
+                Menu.AddSeparator(10);
             }
             #endregion
             #region Barrier
@@ -97,7 +97,7 @@ namespace ReKatarina.ReCore.ConfigList
                 Menu.CreateCheckBox("Enable barrier", "Summoners.Barrier.Status");
                 Menu.CreateCheckBox("Barrier only dangerous", "Summoners.Barrier.Dangerous");
                 Menu.CreateSlider("Barrier if my HP <= {0}%", "Summoners.Barrier.Health", 10);
-                Menu.AddSeparator();
+                Menu.AddSeparator(10);
             }
             #endregion
             #region Snowball
@@ -105,7 +105,7 @@ namespace ReKatarina.ReCore.ConfigList
             {
                 Menu.AddGroupLabel("Snowball");
                 Menu.CreateCheckBox("Enable snowball", "Summoners.Snowball.Status");
-                Menu.AddSeparator();
+                Menu.AddSeparator(10);
             }
             #endregion
             #region Cleanse
@@ -113,7 +113,7 @@ namespace ReKatarina.ReCore.ConfigList
             {
                 Menu.AddGroupLabel("Cleanse");
                 Menu.AddLabel("Cleanse can be configurable in Cleansers section.");
-                Menu.AddSeparator();
+                Menu.AddSeparator(10);
             }
             #endregion
         }

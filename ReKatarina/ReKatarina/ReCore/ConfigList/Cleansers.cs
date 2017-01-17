@@ -11,7 +11,8 @@ namespace ReKatarina.ReCore.ConfigList
 
         static Cleansers()
         {
-            
+            Menu = Loader.Menu.AddSubMenu("Cleaners");
+            Menu.AddGroupLabel("Cleaners settings");
         }
 
         public static void Initialize()

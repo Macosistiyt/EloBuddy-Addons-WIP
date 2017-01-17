@@ -1,4 +1,5 @@
-﻿using EloBuddy.SDK.Menu;
+﻿using EloBuddy;
+using EloBuddy.SDK.Menu;
 using EloBuddy.SDK.Menu.Values;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,17 @@ using System.Threading.Tasks;
 
 namespace ReKatarina.ReCore.Utility
 {
+    public static class TickLimiter
+    {
+        private static int LastTick;
+        public static bool Check()
+        {
+            if (EloBuddy.SDK.Core.GameTickCount - LastTick < MenuHelper.GetSliderValue(ConfigList.Settings.Menu, "Settings.Tick")) return false;
+            LastTick = EloBuddy.SDK.Core.GameTickCount;
+            return true;
+        }
+    }
+
     public static class MenuHelper
     {
         public static void CreateCheckBox(this Menu menu, string displayName, string uniqueIdentifer, bool defaultValue = true)

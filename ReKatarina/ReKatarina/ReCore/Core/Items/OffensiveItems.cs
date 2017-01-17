@@ -31,6 +31,7 @@ namespace ReKatarina.ReCore.Core.Items
                         if (Player.Instance.HealthPercent < MenuHelper.GetSliderValue(ConfigList.OItems.Menu, "Items.Offensive.Youmuu.Me.MinHealth") ||  target.HealthPercent < MenuHelper.GetSliderValue(ConfigList.OItems.Menu, "Items.Offensive.Youmuu.Enemy.MinHealth")) continue;
                         item.Cast();
                         ItemManager.SetLastUse(item.Id);
+                        InfoManager.Show(item, target);
                         break;
 
                     case ItemId.Bilgewater_Cutlass:
@@ -40,6 +41,7 @@ namespace ReKatarina.ReCore.Core.Items
                         if (Player.Instance.HealthPercent < MenuHelper.GetSliderValue(ConfigList.OItems.Menu, "Items.Offensive.Cutlass.Me.MinHealth") || target.HealthPercent < MenuHelper.GetSliderValue(ConfigList.OItems.Menu, "Items.Offensive.Cutlass.Enemy.MinHealth")) continue;
                         item.Cast(target);
                         ItemManager.SetLastUse(item.Id);
+                        InfoManager.Show(item, target);
                         break;
 
                     case ItemId.Blade_of_the_Ruined_King:
@@ -49,6 +51,7 @@ namespace ReKatarina.ReCore.Core.Items
                         if (Player.Instance.HealthPercent < MenuHelper.GetSliderValue(ConfigList.OItems.Menu, "Items.Offensive.Botrk.Me.MinHealth") || target.HealthPercent < MenuHelper.GetSliderValue(ConfigList.OItems.Menu, "Items.Offensive.Botrk.Enemy.MinHealth")) continue;
                         item.Cast(target);
                         ItemManager.SetLastUse(item.Id);
+                        InfoManager.Show(item, target);
                         break;
 
                     case ItemId.Hextech_Gunblade:
@@ -58,6 +61,7 @@ namespace ReKatarina.ReCore.Core.Items
                         if (Player.Instance.HealthPercent < MenuHelper.GetSliderValue(ConfigList.OItems.Menu, "Items.Offensive.Gunblade.Me.MinHealth") || target.HealthPercent < MenuHelper.GetSliderValue(ConfigList.OItems.Menu, "Items.Offensive.Gunblade.Enemy.MinHealth")) continue;
                         item.Cast(target);
                         ItemManager.SetLastUse(item.Id);
+                        InfoManager.Show(item, target);
                         break;
                 }
             }

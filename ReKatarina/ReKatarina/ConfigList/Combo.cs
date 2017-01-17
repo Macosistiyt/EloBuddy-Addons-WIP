@@ -12,6 +12,7 @@ namespace ReKatarina.ConfigList
         private static readonly CheckBox _ComboR;
         private static readonly Slider _MinToUseR;
         private static readonly Slider _MaxRCastRange;
+        private static readonly Slider _MinHPToGoUnderTower;
         private static readonly CheckBox _GoUnderTower;
         private static readonly ComboBox _ComboStyle;
 
@@ -43,6 +44,10 @@ namespace ReKatarina.ConfigList
         {
             get { return _GoUnderTower.CurrentValue; }
         }
+        public static int MinHPToGoUnderTower
+        {
+            get { return _MinHPToGoUnderTower.CurrentValue; }
+        }
         public static int ComboStyle
         {
             get { return _ComboStyle.CurrentValue; }
@@ -61,6 +66,7 @@ namespace ReKatarina.ConfigList
             _MinToUseR = Menu.Add("Combo.R.Minimum", new Slider("Minimum enemies to use R.", 1, 1, 5));
             _MaxRCastRange = Menu.Add("Combo.R.MaxRange", new Slider("Maximum R range to cast.", (int)SpellManager.W.Range, (int)SpellManager.W.Range, (int)SpellManager.R.Range));
             _GoUnderTower = Menu.Add("Combo.E.Turret", new CheckBox("Allow E jump under enemy turret.", false));
+            _MinHPToGoUnderTower = Menu.Add("Combo.R.Turret.MinHP", new Slider("My health must be >= {0}% to allow enter under enemy tower.", 35, 1, 100));
         }
 
         public static void Initialize()

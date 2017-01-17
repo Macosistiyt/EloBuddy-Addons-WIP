@@ -96,6 +96,7 @@
     <Compile Include="ReCore\Databases\DangerousSpells.cs" />
     <Compile Include="ReCore\Managers\DangerManager.cs" />
     <Compile Include="ReCore\Managers\EntityManager.cs" />
+    <Compile Include="ReCore\Managers\InfoManager.cs" />
     <Compile Include="ReCore\Managers\ItemManager.cs" />
     <Compile Include="ReCore\Loader.cs" />
     <Compile Include="ReCore\Managers\SummonerManager.cs" />
