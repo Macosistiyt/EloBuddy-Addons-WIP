@@ -63,11 +63,6 @@ namespace ReKatarina.ReCore.Managers
             new Item(ItemId.Quicksilver_Sash),
         };
 
-        public static bool IsUsingPotion(this Obj_AI_Base target)
-        {
-            return target.HasBuff("ItemDarkCrystalFlask") || target.HasBuff("ItemMiniRegenPotion") || target.HasBuff("ItemCrystalFlaskJungle") || target.HasBuff("Health Potion");
-        }
-
         public static void Initialize()
         {
             

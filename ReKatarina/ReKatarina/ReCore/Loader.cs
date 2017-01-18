@@ -13,7 +13,7 @@ namespace ReKatarina.ReCore
     {
         public static readonly Menu Menu;
         public static readonly CheckBox Status;
-        public static System.Version AssVersion { get { return System.Version.Parse("7.1.1"); } }
+        public static System.Version AssVersion { get { return System.Version.Parse("7.1.4"); } }
 
         static Loader()
         {

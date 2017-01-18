@@ -11,7 +11,7 @@ namespace ReKatarina.ReCore.Core.Spells
     {
         public void Execute()
         {
-            var enemies = Player.Instance.CountEnemyChampionsInRange(500);
+            var enemies = Player.Instance.CountEnemyChampionsInRange(MenuHelper.GetSliderValue(ConfigList.Settings.Menu, "Settings.Range"));
             if (MenuHelper.GetCheckBoxValue(Protector.Menu, "Protector.Heal.Dangerous"))
             {
                 if (enemies > 0 && Player.Instance.IsInDanger(MenuHelper.GetSliderValue(Protector.Menu, "Protector.Heal.Health.Me")))
@@ -29,7 +29,7 @@ namespace ReKatarina.ReCore.Core.Spells
         {
             if (!SummonerManager.Heal.IsReady() || !MenuHelper.GetCheckBoxValue(Protector.Menu, "Protector.Heal.Status"))
                 return false;
-            return false;
+            return true;
         }
 
         public void OnDraw()

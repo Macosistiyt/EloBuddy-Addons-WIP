@@ -32,3 +32,4 @@ D:\Users\Reekspear\Desktop\EloBuddy-Addons-WIP\ReKatarina\ReKatarina\bin\Debug\E
 D:\Users\Reekspear\Desktop\EloBuddy-Addons-WIP\ReKatarina\ReKatarina\bin\Debug\Newtonsoft.Json.dll
 D:\Users\Reekspear\Desktop\EloBuddy-Addons-WIP\ReKatarina\ReKatarina\obj\Debug\ReKatarina.exe
 D:\Users\Reekspear\Desktop\EloBuddy-Addons-WIP\ReKatarina\ReKatarina\obj\Debug\ReKatarina.pdb
+D:\Users\Reekspear\Desktop\EloBuddy-Addons-WIP\ReKatarina\ReKatarina\obj\Debug\ReKatarina.csprojResolveAssemblyReference.cache

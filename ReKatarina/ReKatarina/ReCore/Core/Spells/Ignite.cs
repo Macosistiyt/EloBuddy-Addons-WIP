@@ -14,11 +14,12 @@ namespace ReKatarina.ReCore.Core.Spells
             if (Summoners.Menu.GetCheckBoxValue("Summoners.Ignite.KillSteal"))
             {
                 Obj_AI_Base ks = EloBuddy.SDK.EntityManager.Heroes.Enemies.FirstOrDefault(p =>
-                                Prediction.Health.GetPrediction(p, Game.Ping) <= ReKatarina.ReCore.Managers.EntityManager.GetIgniteDamage() &&
+                                Prediction.Health.GetPrediction(p, Game.Ping) <= Managers.EntityManager.GetIgniteDamage() &&
                                 p.IsValidTarget(SummonerManager.Ignite.Range));
                 if (ks != null && ks.IsValid)
                     SummonerManager.Ignite.Cast(ks);
             }
+
             Obj_AI_Base target = TargetSelector.GetTarget(SummonerManager.Ignite.Range, DamageType.True);
             if (target == null || !target.IsValid) return;
             if (!Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo)) return;
