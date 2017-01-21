@@ -32,10 +32,11 @@ namespace ReKatarina.Utility
                     var d = Dagger.GetClosestDagger();
                     if (d.IsInRange(Player.Instance.Position, SpellManager.E.Range))
                     {
-                        if (!d.IsUnderEnemyTurret() && d.CountEnemyChampionsInRange(SpellManager.E.Range) <= 1 && Player.Instance.HealthPercent >= 35)
+                        if (!d.IsUnderEnemyTurret() && d.CountEnemyChampionsInRange(SpellManager.E.Range) <= 1 && Player.Instance.HealthPercent >= 50)
                         {
-                            if (d.CountEnemyMinionsInRange(SpellManager.W.Range) <= 0) return;
-                            SpellManager.E.Cast(d);
+                            var best_pos = Damage.GetBestDaggerPoint(d, minions.FirstOrDefault());
+                            if (best_pos.CountEnemyMinionsInRange(SpellManager.W.Range) <= 0) return;
+                            SpellManager.E.Cast(best_pos);
                         }
                     }
                 }

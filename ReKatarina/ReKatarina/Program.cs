@@ -5,6 +5,7 @@ using EloBuddy.SDK.Rendering;
 using ReKatarina.Utility;
 using ReKatarina.ReCore;
 using System;
+using SharpDX;
 
 namespace ReKatarina
 {
@@ -17,11 +18,8 @@ namespace ReKatarina
 
         private static void Loading_OnLoadingComplete(EventArgs args)
         {
-            if (Player.Instance.ChampionName != "Katarina")
-            {
-                return;
-            }
-
+            if (Player.Instance.ChampionName != "Katarina") return;
+            
             VersionChecker.Check();
             Loader.Initialize(); // ReCore BETA
             Humanizer.Initialize();
@@ -32,8 +30,14 @@ namespace ReKatarina
             Orbwalker.OnUnkillableMinion += LastHit.OnUnkillableMinion;
             Drawing.OnEndScene += OnEndScene;
             Obj_AI_Base.OnPlayAnimation += Obj_AI_Base_OnPlayAnimation;
+            Player.OnIssueOrder += Player_OnIssueOrder;
 
-            Chat.Print("<font color='#FFFFFF'>ReKatarina <font color='#CF2942'>REBORN</font> v." + VersionChecker.AssVersion + " has been loaded. GL HF;</font>");
+            Chat.Print("<font color='#FFFFFF'>ReKatarina <font color='#CF2942'>REBORN</font> v." + VersionChecker.AssVersion + " has been loaded.</font>");
+        }
+
+        private static void Player_OnIssueOrder(Obj_AI_Base sender, PlayerIssueOrderEventArgs args)
+        {
+            if (sender.IsMe && Damage.HasRBuff()) args.Process = false;
         }
 
         private static void OnEndScene(EventArgs args)
@@ -173,6 +177,15 @@ namespace ReKatarina
                         break;
                 }
                 Circle.Draw(spell.GetColor(), spell.Range, Player.Instance);
+            }
+
+            if (ConfigList.Drawing.DrawDagger)
+            {
+                foreach (var dagger in Dagger.GetDaggers())
+                {
+                    if (dagger.CountEnemyChampionsInRange(375) > 0 || dagger.CountEnemyMinionsInRange(375) > 0) Circle.Draw(Color.Green, 150, dagger);
+                    else Circle.Draw(Color.Red, 150, dagger);
+                }
             }
         }
     }

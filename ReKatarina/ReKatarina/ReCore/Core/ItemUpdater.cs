@@ -13,7 +13,6 @@ namespace ReKatarina.ReCore.Core
     {
         public static void Update()
         {
-            if (MenuHelper.GetCheckBoxValue(ConfigList.Settings.Menu, "Settings.PreventCanceling") && !Player.Instance.ShouldUseItem()) return;
             foreach (var module in ItemsList.modules)
             {
                 module.Execute();

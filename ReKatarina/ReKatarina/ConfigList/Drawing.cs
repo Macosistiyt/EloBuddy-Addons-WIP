@@ -12,6 +12,7 @@ namespace ReKatarina.ConfigList
         private static readonly CheckBox _drawR;
         private static readonly CheckBox _drawDI;
         private static readonly CheckBox _drawCJ;
+        private static readonly CheckBox _drawDagger;
 
         public static bool DrawQ
         {
@@ -41,6 +42,10 @@ namespace ReKatarina.ConfigList
         {
             get { return _drawCJ.CurrentValue; }
         }
+        public static bool DrawDagger
+        {
+            get { return _drawDagger.CurrentValue; }
+        }
 
         static Drawing()
         {
@@ -50,6 +55,7 @@ namespace ReKatarina.ConfigList
             _drawW = Menu.Add("Drawing.DrawW", new CheckBox("Draw W range", false));
             _drawE = Menu.Add("Drawing.DrawE", new CheckBox("Draw E range"));
             _drawR = Menu.Add("Drawing.DrawR", new CheckBox("Draw R range", false));
+            _drawDagger = Menu.Add("Drawing.DrawDagger", new CheckBox("Draw daggers"));
             Menu.AddGroupLabel("Damage indicator");
             _drawDI = Menu.Add("Drawing.DamageIndicator", new CheckBox("Draw Damage Indicator"));
             Menu.AddGroupLabel("Cursor jump range");

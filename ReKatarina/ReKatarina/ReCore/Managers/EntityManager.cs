@@ -100,5 +100,26 @@ namespace ReKatarina.ReCore.Managers
 
             return false;
         }
+
+        public static int CountAlliesInPosition(this Vector3 position, float range)
+        {
+            return EloBuddy.SDK.EntityManager.Heroes.Allies.Where(e => e.IsAlive() && e.IsValid && !e.IsMe && e.IsInRange(position, range)).Count();
+        }
+
+        public static Vector3 GetAlliesGroup(float out_range, float inside_range, int allies)
+        {
+            foreach (var a in EloBuddy.SDK.EntityManager.Heroes.Allies.Where(a => a.IsAlive() && a.IsInRange(Player.Instance, out_range)))
+                if (a.CountAllyChampionsInRange(inside_range) >= allies) return a.Position;
+            return new Vector3();
+        }
+
+        public static Vector3 CenterOfVectors(List<Vector3> vectors)
+        {
+            Vector3 sum = Vector3.Zero;
+            if (vectors == null || vectors.Count == 0) return sum;
+
+            foreach (Vector3 vec in vectors) sum += vec;
+            return sum / vectors.Count;
+        }
     }
 }

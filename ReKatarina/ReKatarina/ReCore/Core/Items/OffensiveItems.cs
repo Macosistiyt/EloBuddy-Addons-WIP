@@ -14,6 +14,8 @@ namespace ReKatarina.ReCore.Core.Items
     {
         public void Execute()
         {
+            if (MenuHelper.GetCheckBoxValue(ConfigList.Settings.Menu, "Settings.PreventCanceling") && !Player.Instance.ShouldUseItem()) return;
+
             var target = TargetSelector.GetTarget(700.0f, DamageType.Mixed, Player.Instance.Position);
             if (target == null || target.IsInvulnerable) return;
             int enemies = Player.Instance.CountEnemyChampionsInRange(MenuHelper.GetSliderValue(ConfigList.Settings.Menu, "Settings.Range"));

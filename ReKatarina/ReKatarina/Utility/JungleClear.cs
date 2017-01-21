@@ -47,8 +47,8 @@ namespace ReKatarina.Utility
                 {
                     var d = Dagger.GetClosestDagger();
                     if (d.IsInRange(Player.Instance.Position, SpellManager.E.Range))
-                        if (!IsWallBetweenPlayer(d.To2D()) && monsters.Last().IsInRange(d, SpellManager.W.Range))
-                            SpellManager.E.Cast(d);
+                        if (!IsWallBetweenPlayer(d.To2D()) && monsters.Last().IsInRange(d, SpellManager.W.Range + 75))
+                            SpellManager.E.Cast(Damage.GetBestDaggerPoint(d, monsters.Last()));
                 }
             }
         }

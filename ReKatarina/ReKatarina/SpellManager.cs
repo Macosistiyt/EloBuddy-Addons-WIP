@@ -48,5 +48,18 @@ namespace ReKatarina
         {
             return ColorTranslation.ContainsKey(spell.Slot) ? ColorTranslation[spell.Slot] : Color.Wheat;
         }
+
+        public static void CastE(this Spell.SpellBase spell, Obj_AI_Base target)
+        {
+            E.CastE(target.Position);
+        }
+
+        public static void CastE(this Spell.SpellBase spell, Vector3 position)
+        {
+            if (spell.Slot != SpellSlot.E) return;
+            if (Player.Instance.HealthPercent <= ConfigList.Combo.ComboSaver && !Q.IsReady() && !W.IsReady()) return;
+            if (position.IsUnderEnemyTurret() && ConfigList.Combo.GoUnderTower && Player.Instance.HealthPercent >= ConfigList.Combo.MinHPToGoUnderTower) E.Cast(position);
+            else if (!position.IsUnderEnemyTurret()) E.Cast(position);
+        }
     }
 }

@@ -71,7 +71,7 @@ namespace ReKatarina.Utility
             if (target == null) return;
 
             if (!chance(ConfigList.Harass.AutoHarassChance)) return;
-            if (SpellManager.Q.IsReady() && ConfigList.Harass.AutoHarassWithQ)
+            if (SpellManager.Q.IsReady() && ConfigList.Harass.AutoHarassWithQ && !Player.Instance.IsUnderEnemyturret())
             {
                 SpellManager.Q.Cast(target);
             }
