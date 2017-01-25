@@ -82,8 +82,9 @@ namespace ReKatarina.Utility
                     Orbwalker.DisableAttacking = true;
                     Orbwalker.ResetAutoAttack();
                 }
-                SpellManager.R.Cast();
+
                 Damage.FreezePlayer();
+                Core.DelayAction(() => SpellManager.R.Cast(), 100);
             }
         } // EWQR
         private static void Combo2(AIHeroClient t)
@@ -117,8 +118,9 @@ namespace ReKatarina.Utility
                     Orbwalker.DisableAttacking = true;
                     Orbwalker.ResetAutoAttack();
                 }
-                SpellManager.R.Cast();
+
                 Damage.FreezePlayer();
+                Core.DelayAction(() => SpellManager.R.Cast(), 100);
             }
         } // EQWR
         private static void Combo3(AIHeroClient t)
@@ -153,8 +155,8 @@ namespace ReKatarina.Utility
                     Orbwalker.ResetAutoAttack();
                 }
 
-                SpellManager.R.Cast();
                 Damage.FreezePlayer();
+                Core.DelayAction(() => SpellManager.R.Cast(), 100);
             }
         } // QEWR        
     }

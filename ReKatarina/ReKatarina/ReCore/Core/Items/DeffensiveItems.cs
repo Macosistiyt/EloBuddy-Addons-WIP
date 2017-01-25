@@ -111,7 +111,6 @@ namespace ReKatarina.ReCore.Core.Items
                         ItemManager.SetLastUse(item.Id);
                         item.Cast();
                         break;
-                        var t = EloBuddy.SDK.EntityManager.Heroes.Enemies.Where(e => e.IsValidTarget(1500) && e.ChampionName == "Rengar");
                 }
             }
         }
