@@ -1,0 +1,14 @@
+D:\Users\Reekspear\Documents\Visual Studio 2013\Projects\ReGaren\ReGaren\bin\Release\ReGaren.exe.config
+D:\Users\Reekspear\Documents\Visual Studio 2013\Projects\ReGaren\ReGaren\bin\Release\ReGaren.exe
+D:\Users\Reekspear\Documents\Visual Studio 2013\Projects\ReGaren\ReGaren\bin\Release\ReGaren.pdb
+D:\Users\Reekspear\Documents\Visual Studio 2013\Projects\ReGaren\ReGaren\bin\Release\EloBuddy.dll
+D:\Users\Reekspear\Documents\Visual Studio 2013\Projects\ReGaren\ReGaren\bin\Release\EloBuddy.SDK.dll
+D:\Users\Reekspear\Documents\Visual Studio 2013\Projects\ReGaren\ReGaren\bin\Release\SharpDX.dll
+D:\Users\Reekspear\Documents\Visual Studio 2013\Projects\ReGaren\ReGaren\bin\Release\SharpDX.Direct3D9.dll
+D:\Users\Reekspear\Documents\Visual Studio 2013\Projects\ReGaren\ReGaren\bin\Release\Newtonsoft.Json.dll
+D:\Users\Reekspear\Documents\Visual Studio 2013\Projects\ReGaren\ReGaren\obj\Release\ReGaren.exe
+D:\Users\Reekspear\Documents\Visual Studio 2013\Projects\ReGaren\ReGaren\obj\Release\ReGaren.pdb
+D:\Users\Reekspear\Documents\Visual Studio 2013\Projects\ReGaren\ReGaren\obj\Release\ReGaren.csprojResolveAssemblyReference.cache
+D:\Users\Reekspear\Desktop\EloBuddy-Addons\ReGaren\ReGaren\obj\Release\ReGaren.csprojResolveAssemblyReference.cache
+D:\Users\Reekspear\Desktop\EloBuddy-Addons\ReGaren\ReGaren\obj\Release\ReGaren.exe
+D:\Users\Reekspear\Desktop\EloBuddy-Addons\ReGaren\ReGaren\obj\Release\ReGaren.pdb
