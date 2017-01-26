@@ -3,6 +3,7 @@ using EloBuddy.SDK;
 using EloBuddy.SDK.Enumerations;
 using SharpDX;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ReChoGath
 {
@@ -12,6 +13,8 @@ namespace ReChoGath
         public static Spell.Skillshot W { get; private set; }
         public static Spell.Active E { get; private set; }
         public static Spell.Targeted R { get; private set; }
+        public static Spell.Skillshot Flash { get; private set; }
+        public static bool PlayerHasFlash = false;
 
         public static List<Spell.SpellBase> AllSpells { get; private set; }
         public static Dictionary<SpellSlot, Color> ColorTranslation { get; private set; }
@@ -22,6 +25,13 @@ namespace ReChoGath
             W = new Spell.Skillshot(SpellSlot.W, 650, SkillShotType.Cone, 250, 1750, 100);
             E = new Spell.Active(SpellSlot.E);
             R = new Spell.Targeted(SpellSlot.R, 175);
+
+            var flash = Player.Spells.FirstOrDefault(s => s.Name.ToLower().Contains("summonerflash"));
+            if (flash != null)
+            {
+                Flash = new Spell.Skillshot(flash.Slot, (uint)flash.SData.CastRange, SkillShotType.Linear);
+                PlayerHasFlash = true;
+            }
 
             AllSpells = new List<Spell.SpellBase>(new Spell.SpellBase[] { Q, W, E, R });
             ColorTranslation = new Dictionary<SpellSlot, Color>

@@ -1,4 +1,5 @@
 ﻿using EloBuddy;
+using EloBuddy.SDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,17 @@ namespace ReChoGath.Utils
         public static int GetFeastStacks() // TODO
         {
             return 0;
+        }
+
+        public static void FlashR(Obj_AI_Base target) // best combo btw Kappa
+        {
+            if (!SpellManager.PlayerHasFlash || !SpellManager.Flash.IsReady() || !SpellManager.R.IsReady() || target.TotalShieldHealth() + 5 > Damage.GetRDamage(target)) return;
+
+            var position = Player.Instance.Position.Extend(target, SpellManager.Flash.Range).To3D();
+            if ((position.IsUnderEnemyTurret() && !Config.Combo.Menu.GetCheckBoxValue("Config.Combo.R.UnderTurret")) || position.IsWall()) return;
+
+            SpellManager.Flash.Cast(position);
+            Core.DelayAction(() => SpellManager.R.Cast(target), 100);
         }
     }
 }

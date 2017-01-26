@@ -16,6 +16,29 @@ namespace ReChoGath.Modes
 
         public static void Execute()
         {
+            #region Auto Q
+            if (Config.Misc.Menu.GetCheckBoxValue("Config.Misc.Another.Q.AlwaysStun") && SpellManager.Q.IsReady())
+            {
+                foreach (var e in EntityManager.Heroes.Enemies.Where(h => h.IsValid && h.IsAlive() && h.IsInRange(Player.Instance, SpellManager.Q.Range) && (h.HasBuffOfType(BuffType.Stun) || h.HasBuffOfType(BuffType.Knockup) || h.HasBuffOfType(BuffType.Fear))).OrderByDescending(h => h.Health))
+                {
+                    SpellManager.Q.Cast(SpellManager.Q.GetPrediction(e).CastPosition);
+                    break;
+                }
+            }
+            #endregion
+            #region Flash R
+            if (Config.Combo.Menu.GetCheckBoxValue("Config.Combo.R.FlashRAuto") && SpellManager.R.IsReady() && SpellManager.Flash.IsReady())
+            {
+                foreach (var e in EntityManager.Heroes.Enemies.Where(h => h.IsValid && h.IsAlive() && !h.IsInvulnerable && h.IsInRange(Player.Instance, SpellManager.R.Range + SpellManager.Flash.Range - 50)))
+                {
+                    if (e.Distance(Player.Instance) > SpellManager.Flash.Range && e.CountEnemyChampionsInRange(550) <= 1)
+                    {
+                        Other.FlashR(e);
+                        break;
+                    }
+                }
+            }
+            #endregion
             #region KillSteal
             foreach (var e in EntityManager.Heroes.Enemies.Where(h => h.IsValid && h.IsAlive() && h.IsInRange(Player.Instance.Position, SpellManager.Q.Range) && !h.IsInvulnerable))
             {

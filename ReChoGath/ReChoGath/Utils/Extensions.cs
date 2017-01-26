@@ -15,5 +15,16 @@ namespace ReChoGath.Utils
         {
             return EntityManager.Turrets.Enemies.Any((Obj_AI_Turret turret) => turret.IsInRange(d, turret.GetAutoAttackRange(null)) && turret.IsAlive());
         }
+
+        static bool IsCollision(Vector2 start, Vector2 end, float width)
+        {
+            Geometry.Polygon.Rectangle r = new Geometry.Polygon.Rectangle(start, end, width);
+            foreach (Obj_AI_Base aiBase in ObjectManager.Get<Obj_AI_Base>().Where(x => !x.IsAlly && x.IsValid && (x is AIHeroClient || x is Obj_AI_Minion)))
+            {
+                if (r.IsInside(aiBase.Position) || r.Points.Any(x => x.Distance(aiBase.Position) <= aiBase.BoundingRadius))
+                    return true;
+            }
+            return false;
+        }
     }
 }

@@ -9,13 +9,6 @@ using SharpDX;
 using ReChoGath.Utils;
 using System.Linq;
 
-/*
- *          TODO LIST
- *          - Combo mode
- *          - Damage calculations
- *          - Flash + R
- * */
-
 namespace ReChoGath
 {
     class Program
@@ -116,12 +109,18 @@ namespace ReChoGath
                     Console.WriteLine("{0} Exception caught.", e);
                 }
             }
-            if (Config.Combo.Menu.GetKeyBindValue("Config.Combo.R.Force"))
+            if (Config.Combo.Menu.GetKeyBindValue("Config.Combo.R.FlashR"))
             {
-                if (SpellManager.R.IsReady() || Player.Instance.HasBuff("AhriTumble"))
+                if (SpellManager.R.IsReady() && SpellManager.Flash.IsReady())
                 {
-                    var position = Player.Instance.Position.Distance(Game.CursorPos) < SpellManager.R.Range ? Game.CursorPos : Player.Instance.Position.Extend(Game.CursorPos, SpellManager.R.Range).To3D();
-                    SpellManager.R.Cast(position);
+                    foreach (var e in EntityManager.Heroes.Enemies.Where(h => h.IsValid && h.IsAlive() && !h.IsInvulnerable && h.IsInRange(Player.Instance, SpellManager.R.Range + SpellManager.Flash.Range - 50)))
+                    {
+                        if (e.Distance(Player.Instance) >= SpellManager.Flash.Range)
+                        {
+                            Other.FlashR(e);
+                            break;
+                        }
+                    }
                 }
             }
             #endregion

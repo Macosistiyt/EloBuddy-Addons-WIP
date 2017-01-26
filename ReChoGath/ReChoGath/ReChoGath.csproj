@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ReAhri.Program</StartupObject>
+    <StartupObject>ReChoGath.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EloBuddy">
