@@ -16,9 +16,9 @@ namespace ReAhri.Modes
 
             if (Config.Harass.Menu.GetCheckBoxValue("Config.Harass.Q.Status") && SpellManager.E.IsReady() && Player.Instance.ManaPercent >= Config.Harass.Menu.GetSliderValue("Config.Harass.Q.Mana"))
             {
-                var predition = SpellManager.E.GetPrediction(target);
+                var predition = SpellManager.Q.GetPrediction(target);
                 if (predition.HitChancePercent >= Config.Harass.Menu.GetSliderValue("Config.Harass.Q.HitChance") * 33)
-                    SpellManager.E.Cast(predition.CastPosition);
+                    SpellManager.Q.Cast(predition.CastPosition);
             }
 
             if (Config.Harass.Menu.GetCheckBoxValue("Config.Harass.W.Status") && SpellManager.W.IsReady() && Player.Instance.ManaPercent >= Config.Harass.Menu.GetSliderValue("Config.Harass.W.Mana"))

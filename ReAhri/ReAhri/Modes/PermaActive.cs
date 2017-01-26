@@ -46,7 +46,7 @@ namespace ReAhri.Modes
 
             if (target == null) return;
             if (Player.Instance.Position.IsUnderEnemyTurret() || Player.Instance.Position.IsGrass() && Player.Instance.CountAllyChampionsInRange(150) >= 1 && !target.Position.IsGrass()) return; // anti trap destroyer Fappa
-            if (chance(Config.Harass.Menu.GetSliderValue("Config.AutoHarass.Q.Chance")) && Config.Harass.Menu.GetCheckBoxValue("Config.AutoHarass.Q.Status") && SpellManager.E.IsReady() && Player.Instance.ManaPercent >= Config.Harass.Menu.GetSliderValue("Config.Harass.Q.Mana"))
+            if (chance(Config.Harass.Menu.GetSliderValue("Config.AutoHarass.Q.Chance")) && Config.Harass.Menu.GetCheckBoxValue("Config.AutoHarass.Q.Status") && SpellManager.Q.IsReady() && Player.Instance.ManaPercent >= Config.Harass.Menu.GetSliderValue("Config.Harass.Q.Mana"))
             {
                 var predition = SpellManager.Q.GetPrediction(target);
                 if (predition.HitChancePercent >= Config.Harass.Menu.GetSliderValue("Config.Harass.Q.HitChance") * 33)

@@ -9,19 +9,19 @@ namespace ReAhri.Modes
     {
         public static void Execute()
         {
-            var monsters = EntityManager.MinionsAndMonsters.GetJungleMonsters(Player.Instance.Position, SpellManager.E.Range);
+            var monsters = EntityManager.MinionsAndMonsters.GetJungleMonsters(Player.Instance.Position, SpellManager.Q.Range);
             if (monsters == null || !monsters.Any()) return;
 
-            if (Config.Farm.Menu.GetCheckBoxValue("Config.Farm.Q.Status") || Player.Instance.ManaPercent >= Config.Farm.Menu.GetSliderValue("Config.Farm.Q.Mana") && SpellManager.E.IsReady())
+            if (Config.Farm.Menu.GetCheckBoxValue("Config.Farm.Q.Status") || Player.Instance.ManaPercent >= Config.Farm.Menu.GetSliderValue("Config.Farm.Q.Mana") && SpellManager.Q.IsReady())
             {
-                var target = SpellManager.E.GetBestLinearCastPosition(monsters);
+                var target = SpellManager.Q.GetBestLinearCastPosition(monsters);
                 if (!Config.Farm.Menu.GetCheckBoxValue("Config.Farm.Q.Ignore"))
                 {
                     if (target.HitNumber >= Config.Farm.Menu.GetSliderValue("Config.Farm.Q.Hit"))
-                        SpellManager.E.Cast(target.CastPosition);
+                        SpellManager.Q.Cast(target.CastPosition);
                 }
                 else
-                    SpellManager.E.Cast(target.CastPosition);
+                    SpellManager.Q.Cast(target.CastPosition);
             }
 
             if (Config.Farm.Menu.GetCheckBoxValue("Config.Farm.E.Status") || Player.Instance.ManaPercent >= Config.Farm.Menu.GetSliderValue("Config.Farm.E.Mana") && SpellManager.E.IsReady())
