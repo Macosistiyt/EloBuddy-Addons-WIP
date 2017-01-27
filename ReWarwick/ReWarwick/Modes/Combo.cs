@@ -19,10 +19,12 @@ namespace ReWarwick.Modes
             if (SpellManager.Q.IsReady() && Config.Combo.Menu.GetCheckBoxValue("Config.Combo.Q.Status"))
             {
                 if (target.IsInRange(Player.Instance, SpellManager.Q.Range))
+                {
                     SpellManager.Q.Cast(target);
+                }
             }
 
-            if (SpellManager.E.IsReady() && Config.Combo.Menu.GetCheckBoxValue("Config.Combo.E.Status"))
+            if (SpellManager.E.IsReady() && !Player.Instance.HasBuff("WarwickE") && Config.Combo.Menu.GetCheckBoxValue("Config.Combo.E.Status"))
             {
                 if (target.IsInRange(Player.Instance, SpellManager.E.Range))
                 {
@@ -39,7 +41,7 @@ namespace ReWarwick.Modes
                     var prediction = SpellManager.R.GetPrediction(target);
                     if (prediction.CastPosition.IsUnderEnemyTurret() && !Config.Combo.Menu.GetCheckBoxValue("Config.Combo.R.Dive")) return;
 
-                    if (!prediction.Collision && prediction.HitChancePercent >= Config.Combo.Menu.GetSliderValue("Config.Combo.R.HitChance"))
+                    if (!Utils.Extensions.IsCollision(Player.Instance.Position.To2D(), prediction.CastPosition.To2D(), 150) && prediction.HitChancePercent >= Config.Combo.Menu.GetSliderValue("Config.Combo.R.HitChance"))
                         SpellManager.R.Cast(prediction.CastPosition);
                 }
             }

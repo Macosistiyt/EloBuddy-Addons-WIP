@@ -17,7 +17,7 @@ namespace ReWarwick.Modes
         public static void Execute()
         {
             #region R Range update 
-            SpellManager.R.Range = (uint)(Player.Instance.MoveSpeed * 2.5);
+            SpellManager.R.Range = (uint)(Player.Instance.MoveSpeed * 2);
             #endregion
             #region KillSteal
             foreach (var e in EntityManager.Heroes.Enemies.Where(h => h.IsValid && h.IsAlive() && h.IsInRange(Player.Instance.Position, SpellManager.Q.Range) && !h.IsInvulnerable))
@@ -42,7 +42,7 @@ namespace ReWarwick.Modes
                 SpellManager.Q.Cast(target);
             }
 
-            if (chance(Config.Harass.Menu.GetSliderValue("Config.AutoHarass.E.Chance")) && Config.Harass.Menu.GetCheckBoxValue("Config.AutoHarass.E.Status") && SpellManager.E.IsReady() && Player.Instance.ManaPercent >= Config.Harass.Menu.GetSliderValue("Config.Harass.E.Mana"))
+            if (chance(Config.Harass.Menu.GetSliderValue("Config.AutoHarass.E.Chance")) && !Player.Instance.HasBuff("WarwickE") && Config.Harass.Menu.GetCheckBoxValue("Config.AutoHarass.E.Status") && SpellManager.E.IsReady() && Player.Instance.ManaPercent >= Config.Harass.Menu.GetSliderValue("Config.Harass.E.Mana"))
             {
                 SpellManager.E.Cast(target);
                 if (Config.Harass.Menu.GetCheckBoxValue("Config.Harass.E.After"))

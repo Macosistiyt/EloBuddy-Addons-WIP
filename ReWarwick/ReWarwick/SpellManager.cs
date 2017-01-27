@@ -19,7 +19,7 @@ namespace ReWarwick
 
         static SpellManager()
         {
-            Q = new Spell.Targeted(SpellSlot.Q, 950, DamageType.Magical);
+            Q = new Spell.Targeted(SpellSlot.Q, 350, DamageType.Magical);
             W = new Spell.Active(SpellSlot.W, 4000);
             E = new Spell.Active(SpellSlot.E);
             R = new Spell.Skillshot(SpellSlot.R, 335, SkillShotType.Linear);

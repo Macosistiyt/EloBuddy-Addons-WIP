@@ -22,7 +22,7 @@ namespace ReWarwick.Modes
                 }
             }
 
-            if (Config.Harass.Menu.GetCheckBoxValue("Config.Harass.E.Status") && SpellManager.E.IsReady() && Player.Instance.ManaPercent >= Config.Harass.Menu.GetSliderValue("Config.Harass.E.Mana"))
+            if (Config.Harass.Menu.GetCheckBoxValue("Config.Harass.E.Status") && SpellManager.E.IsReady() && !Player.Instance.HasBuff("WarwickE") && Player.Instance.ManaPercent >= Config.Harass.Menu.GetSliderValue("Config.Harass.E.Mana"))
             {
                 if (Player.Instance.IsInRange(target, SpellManager.E.Range))
                 {

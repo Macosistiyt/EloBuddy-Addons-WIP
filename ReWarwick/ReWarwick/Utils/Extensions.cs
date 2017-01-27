@@ -16,7 +16,7 @@ namespace ReWarwick.Utils
             return EntityManager.Turrets.Enemies.Any((Obj_AI_Turret turret) => turret.IsInRange(d, turret.GetAutoAttackRange(null)) && turret.IsAlive());
         }
 
-        static bool IsCollision(Vector2 start, Vector2 end, float width)
+        public static bool IsCollision(Vector2 start, Vector2 end, float width)
         {
             Geometry.Polygon.Rectangle r = new Geometry.Polygon.Rectangle(start, end, width);
             foreach (Obj_AI_Base aiBase in ObjectManager.Get<Obj_AI_Base>().Where(x => !x.IsAlly && x.IsValid && (x is AIHeroClient)))
