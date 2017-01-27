@@ -55,7 +55,7 @@ namespace ReChoGath.Modes
                     break;
                 }
 
-                if (Config.Misc.Menu.GetCheckBoxValue("Config.Misc.KillSteal.R") && SpellManager.E.IsReady() && health <= Damage.GetRDamage(e) && e.IsInRange(Player.Instance, SpellManager.R.Range))
+                if (Config.Misc.Menu.GetCheckBoxValue("Config.Misc.KillSteal.R") && SpellManager.R.IsReady() && health <= Damage.GetRDamage(e) && e.IsInRange(Player.Instance, SpellManager.R.Range))
                 {
                     SpellManager.R.Cast(e);
                     break;

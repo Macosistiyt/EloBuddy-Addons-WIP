@@ -13,9 +13,8 @@ namespace ReAhri
         public static double GetQDamage(Obj_AI_Base target)
         {
             if (!SpellManager.Q.IsReady() || SpellManager.Q.Level <= 0) return 0;
-            int[] damages = { 40, 65, 90, 115, 140 };
-
-            return (damages[SpellManager.Q.Level - 1] + (0.35 * Player.Instance.TotalMagicalDamage)) * ((100 - target.PercentMagicReduction) / 100) + damages[SpellManager.Q.Level - 1] / 2;
+            return Player.Instance.CalculateDamageOnUnit(target, DamageType.Magical,
+                (new float[] { 0, 40, 65, 90, 115, 140 }[SpellManager.Q.Level] + (0.35f * Player.Instance.TotalMagicalDamage) + (new float[] { 0, 40, 65, 90, 115, 140 }[SpellManager.Q.Level] / 2)));
         }
 
         public static double GetWDamage(Obj_AI_Base target)
@@ -28,9 +27,9 @@ namespace ReAhri
         public static double GetEDamage(Obj_AI_Base target)
         {
             if (!SpellManager.E.IsReady() || SpellManager.E.Level <= 0) return 0;
-            int[] damages = { 60, 95, 130, 165, 200 };
 
-            return (damages[SpellManager.E.Level - 1] + (0.5 * Player.Instance.TotalMagicalDamage)) * ((100 - target.PercentMagicReduction) / 100);
+            return Player.Instance.CalculateDamageOnUnit(target, DamageType.Magical,
+                (new float[] { 0, 60, 95, 130, 165, 200 }[SpellManager.E.Level] + (0.5f * Player.Instance.TotalMagicalDamage)));
         }
 
         public static double GetRDamage(Obj_AI_Base target)
