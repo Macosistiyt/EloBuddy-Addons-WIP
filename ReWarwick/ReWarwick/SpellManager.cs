@@ -22,7 +22,10 @@ namespace ReWarwick
             Q = new Spell.Targeted(SpellSlot.Q, 350, DamageType.Magical);
             W = new Spell.Active(SpellSlot.W, 4000);
             E = new Spell.Active(SpellSlot.E);
-            R = new Spell.Skillshot(SpellSlot.R, 335, SkillShotType.Linear);
+            R = new Spell.Skillshot(SpellSlot.R, 110, SkillShotType.Linear, 0, 1600, 150, DamageType.Magical)
+            {
+                AllowedCollisionCount = -1
+            };
 
             AllSpells = new List<Spell.SpellBase>(new Spell.SpellBase[] { Q, W, E, R });
             ColorTranslation = new Dictionary<SpellSlot, Color>

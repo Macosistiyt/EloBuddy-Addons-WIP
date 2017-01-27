@@ -109,6 +109,8 @@ namespace ReWarwick
             }
             if (Config.Combo.Menu.GetKeyBindValue("Config.Combo.R.Force"))
             {
+                if (!Player.Instance.HasBuff("WarwickR") && Config.Combo.Menu.GetCheckBoxValue("Config.Combo.R.OrbWalk"))
+                    Orbwalker.OrbwalkTo(Game.CursorPos);
                 Other.ForceRUsage();
             }
             #endregion

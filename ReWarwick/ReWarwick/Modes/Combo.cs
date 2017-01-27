@@ -12,7 +12,7 @@ namespace ReWarwick.Modes
     {
         public static void Execute()
         {
-            var target = TargetSelector.GetTarget(SpellManager.Q.Range, DamageType.Mixed, Player.Instance.Position);
+            var target = TargetSelector.GetTarget(SpellManager.R.Range, DamageType.Mixed, Player.Instance.Position);
             if (target == null || target.IsInvulnerable)
                 return;
 
@@ -34,14 +34,14 @@ namespace ReWarwick.Modes
                 }
             }
 
-            if (SpellManager.R.IsReady() && Config.Combo.Menu.GetCheckBoxValue("Config.Combo.R.Status") && !(target.HasBuff("bansheeveil") || target.HasBuff("BlackShield")) && target.IsInRange(Player.Instance, SpellManager.R.Range))
+            if (SpellManager.R.IsReady() && Config.Combo.Menu.GetCheckBoxValue("Config.Combo.R.Status") && target.IsInRange(Player.Instance, SpellManager.R.Range))
             {
-                if (Config.Combo.Menu.GetCheckBoxValue($"Config.Combo.R.Use.{target.ChampionName}") && target.HealthPercent <= Config.Combo.Menu.GetSliderValue("Config.Combo.R.TargetHealth"))
+                if (Config.Combo.Menu.GetCheckBoxValue($"Config.Combo.R.Use.{target.ChampionName}") && !(target.HasBuff("bansheeveil") || target.HasBuff("BlackShield")) && target.HealthPercent >= Config.Combo.Menu.GetSliderValue("Config.Combo.R.TargetHealth"))
                 {
                     var prediction = SpellManager.R.GetPrediction(target);
                     if (prediction.CastPosition.IsUnderEnemyTurret() && !Config.Combo.Menu.GetCheckBoxValue("Config.Combo.R.Dive")) return;
 
-                    if (!Utils.Extensions.IsCollision(Player.Instance.Position.To2D(), prediction.CastPosition.To2D(), 150) && prediction.HitChancePercent >= Config.Combo.Menu.GetSliderValue("Config.Combo.R.HitChance"))
+                    if (!prediction.Collision && prediction.HitChancePercent >= Config.Combo.Menu.GetSliderValue("Config.Combo.R.HitChance"))
                         SpellManager.R.Cast(prediction.CastPosition);
                 }
             }

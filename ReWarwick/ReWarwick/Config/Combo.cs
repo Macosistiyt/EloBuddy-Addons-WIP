@@ -24,15 +24,16 @@ namespace ReWarwick.Config
             Menu.AddGroupLabel("R settings");
             Menu.CreateCheckBox("Use in combo", "Config.Combo.R.Status");
             Menu.CreateCheckBox("Allow jump under enemy turret", "Config.Combo.R.Dive", false);
+            Menu.CreateCheckBox("Ignore whitelist in Force Mode", "Config.Combo.R.IgnoreForce");
+            Menu.CreateCheckBox("Orbwalk to mouse in Force Mode", "Config.Combo.R.OrbWalk");
             Menu.AddLabel("Whitelist :");
             foreach (var e in EntityManager.Heroes.Enemies)
             {
                 Menu.CreateCheckBox($"Use on {e.ChampionName}", $"Config.Combo.R.Use.{e.ChampionName}");
             }
-            Menu.CreateCheckBox("Ignore whitelist when force", "Config.Combo.R.IgnoreForce");
-            Menu.CreateKeyBind("Force R usage", "Config.Combo.R.Force", 85, KeyBind.UnboundKey, KeyBind.BindTypes.HoldActive);
+            Menu.CreateKeyBind("Force R usage", "Config.Combo.R.Force", 85, KeyBind.UnboundKey, KeyBind.BindTypes.HoldActive, false);
             Menu.CreateSlider("Use only when hit chance >= {0}%", "Config.Combo.R.HitChance", 80, 1, 100);
-            Menu.CreateSlider("Use automatically only when target health >= {0}%", "Config.Combo.R.TargetHealth", 40, 1, 100);
+            Menu.CreateSlider("Use in combo only when target health >= {0}%", "Config.Combo.R.TargetHealth", 40, 1, 100);
         }
 
         public static void Initialize()

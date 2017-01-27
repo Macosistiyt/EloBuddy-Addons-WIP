@@ -13,13 +13,13 @@ namespace ReWarwick.Modes
             var monsters = EntityManager.MinionsAndMonsters.GetJungleMonsters(Player.Instance.Position, SpellManager.Q.Range);
             if (monsters == null || !monsters.Any()) return;
 
-            if (Config.Farm.Menu.GetCheckBoxValue("Config.Farm.Q.Status") && Player.Instance.ManaPercent >= Config.Farm.Menu.GetSliderValue("Config.Farm.Q.Mana") && SpellManager.Q.IsReady())
+            if (Config.Farm.Menu.GetCheckBoxValue("Config.Farm.Q.Status") && SpellManager.Q.IsReady() && (Player.Instance.Level < 4 || Player.Instance.ManaPercent >= Config.Farm.Menu.GetSliderValue("Config.Farm.Q.Mana")))
             {
                 var target = monsters.OrderByDescending(h => h.Health).FirstOrDefault();
                 SpellManager.Q.Cast(target);
             }
 
-            if (Config.Farm.Menu.GetCheckBoxValue("Config.Farm.E.Status") && Player.Instance.ManaPercent >= Config.Farm.Menu.GetSliderValue("Config.Farm.E.Mana") && SpellManager.E.IsReady())
+            if (Config.Farm.Menu.GetCheckBoxValue("Config.Farm.E.Status") && !Player.Instance.HasBuff("WarwickE") && SpellManager.E.IsReady() && (Player.Instance.Level < 4 || Player.Instance.ManaPercent >= Config.Farm.Menu.GetSliderValue("Config.Farm.E.Mana")))
             {
                 if (monsters.Count() >= 2 || Player.Instance.HealthPercent <= 40)
                     SpellManager.E.Cast();
