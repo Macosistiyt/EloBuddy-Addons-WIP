@@ -21,7 +21,7 @@ namespace ReWarwick
         {
             Q = new Spell.Targeted(SpellSlot.Q, 350, DamageType.Magical);
             W = new Spell.Active(SpellSlot.W, 4000);
-            E = new Spell.Active(SpellSlot.E);
+            E = new Spell.Active(SpellSlot.E, 350);
             R = new Spell.Skillshot(SpellSlot.R, 110, SkillShotType.Linear, 0, 1600, 150, DamageType.Magical)
             {
                 AllowedCollisionCount = -1
