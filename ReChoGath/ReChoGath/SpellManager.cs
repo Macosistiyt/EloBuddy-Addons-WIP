@@ -2,6 +2,7 @@
 using EloBuddy.SDK;
 using EloBuddy.SDK.Enumerations;
 using SharpDX;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -24,12 +25,12 @@ namespace ReChoGath
             Q = new Spell.Skillshot(SpellSlot.Q, 950, SkillShotType.Circular, 750, int.MaxValue, 175);
             W = new Spell.Skillshot(SpellSlot.W, 650, SkillShotType.Cone, 250, 1750, 100);
             E = new Spell.Active(SpellSlot.E);
-            R = new Spell.Targeted(SpellSlot.R, 175);
+            R = new Spell.Targeted(SpellSlot.R, 225);
 
             var flash = Player.Spells.FirstOrDefault(s => s.Name.ToLower().Contains("summonerflash"));
             if (flash != null)
             {
-                Flash = new Spell.Skillshot(flash.Slot, (uint)flash.SData.CastRange, SkillShotType.Linear);
+                Flash = new Spell.Skillshot(flash.Slot, 550, SkillShotType.Linear);
                 PlayerHasFlash = true;
             }
 

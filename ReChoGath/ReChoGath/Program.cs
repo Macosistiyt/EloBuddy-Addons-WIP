@@ -20,7 +20,7 @@ namespace ReChoGath
 
         private static void Loading_OnLoadingComplete(EventArgs args)
         {
-            if (Player.Instance.ChampionName != "ChoGath") return;
+            if (Player.Instance.ChampionName != "Chogath") return;
             
             //VersionChecker.Check();
             Loader.Initialize(); // ReCore BETA
@@ -111,11 +111,12 @@ namespace ReChoGath
             }
             if (Config.Combo.Menu.GetKeyBindValue("Config.Combo.R.FlashR"))
             {
+                Console.WriteLine(SpellManager.Flash.Range);
                 if (SpellManager.R.IsReady() && SpellManager.Flash.IsReady())
                 {
                     foreach (var e in EntityManager.Heroes.Enemies.Where(h => h.IsValid && h.IsAlive() && !h.IsInvulnerable && h.IsInRange(Player.Instance, SpellManager.R.Range + SpellManager.Flash.Range - 50)))
                     {
-                        if (e.Distance(Player.Instance) >= SpellManager.Flash.Range)
+                        if (e.Distance(Player.Instance) >= SpellManager.R.Range + 200)
                         {
                             Other.FlashR(e);
                             break;

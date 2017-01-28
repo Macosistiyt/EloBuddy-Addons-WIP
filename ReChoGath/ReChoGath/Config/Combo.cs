@@ -29,7 +29,7 @@ namespace ReChoGath.Config
             Menu.CreateCheckBox("Use only when killable", "Config.Combo.R.Killable");
             Menu.CreateCheckBox("Enable Flash + R automatically if killable", "Config.Combo.R.FlashRAuto");
             Menu.CreateCheckBox("Allow flash under enemy turret", "Config.Combo.R.UnderTurret", false);
-            Menu.CreateKeyBind("Flash + R key", "Config.Combo.R.FlashR", 85, KeyBind.UnboundKey, KeyBind.BindTypes.HoldActive);
+            Menu.CreateKeyBind("Flash + R key", "Config.Combo.R.FlashR", 85, KeyBind.UnboundKey, KeyBind.BindTypes.HoldActive, false);
         }
 
         public static void Initialize()

@@ -77,7 +77,7 @@ namespace ReChoGath.Modes
             if (chance(Config.Harass.Menu.GetSliderValue("Config.AutoHarass.W.Chance")) && Config.Harass.Menu.GetCheckBoxValue("Config.AutoHarass.W.Status") && SpellManager.W.IsReady() && Player.Instance.ManaPercent >= Config.Harass.Menu.GetSliderValue("Config.Harass.W.Mana"))
             {
                 var predition = SpellManager.W.GetPrediction(target);
-                if (predition.HitChancePercent >= Config.Harass.Menu.GetSliderValue("Config.Harass.E.HitChance"))
+                if (predition.HitChancePercent >= Config.Harass.Menu.GetSliderValue("Config.Harass.W.HitChance"))
                     SpellManager.E.Cast(predition.CastPosition);
             }
             #endregion

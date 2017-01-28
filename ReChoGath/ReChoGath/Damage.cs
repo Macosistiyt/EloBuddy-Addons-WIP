@@ -27,7 +27,10 @@ namespace ReChoGath
         public static double GetRDamage(Obj_AI_Base target)
         {
             if (SpellManager.R.IsReady())
-                return Player.Instance.GetSpellDamage(target, SpellSlot.R, DamageLibrary.SpellStages.Default);
+                if (target.IsMonster || target.IsMinion)
+                    return 1000 + (Player.Instance.TotalMagicalDamage * 0.7f);
+                else
+                    return Player.Instance.GetSpellDamage(target, SpellSlot.R, DamageLibrary.SpellStages.Default);
             return 0;
         }
 

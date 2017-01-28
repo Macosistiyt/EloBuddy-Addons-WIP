@@ -37,20 +37,22 @@ namespace ReChoGath.Utils
             }
         }
 
-        public static int GetFeastStacks() // TODO
+        public static int GetFeastStacks()
         {
+            if (Player.Instance.HasBuff("Feast")) return Player.Instance.GetBuff("Feast").Count;
             return 0;
         }
 
         public static void FlashR(Obj_AI_Base target) // best combo btw Kappa
         {
+            Console.WriteLine(Damage.GetRDamage(target));
             if (!SpellManager.PlayerHasFlash || !SpellManager.Flash.IsReady() || !SpellManager.R.IsReady() || target.TotalShieldHealth() + 5 > Damage.GetRDamage(target)) return;
 
             var position = Player.Instance.Position.Extend(target, SpellManager.Flash.Range).To3D();
             if ((position.IsUnderEnemyTurret() && !Config.Combo.Menu.GetCheckBoxValue("Config.Combo.R.UnderTurret")) || position.IsWall()) return;
 
             SpellManager.Flash.Cast(position);
-            Core.DelayAction(() => SpellManager.R.Cast(target), 100);
+            Core.DelayAction(() => SpellManager.R.Cast(target), 250);
         }
     }
 }
