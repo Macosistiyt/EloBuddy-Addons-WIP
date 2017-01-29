@@ -13,7 +13,9 @@ namespace ReGaren.ReCore.Core.Items
     {
         public void Execute()
         {
-            if (!MenuHelper.GetCheckBoxValue(ConfigList.CItems.Menu, "Items.Consumer.Potions.Status") || Player.Instance.IsUsingPotion() || Player.Instance.HealthPercent > MenuHelper.GetSliderValue(ConfigList.CItems.Menu, "Items.Consumer.Health")) return;
+            if (MenuHelper.GetCheckBoxValue(Config.Settings.Menu, "Settings.PreventCanceling") && !Player.Instance.ShouldUseItem()) return;
+
+            if (!MenuHelper.GetCheckBoxValue(Config.CItems.Menu, "Items.Consumer.Potions.Status") || Player.Instance.IsUsingPotion() || Player.Instance.HealthPercent > MenuHelper.GetSliderValue(Config.CItems.Menu, "Items.Consumer.Health")) return;
 
             foreach (var item in Player.Instance.InventoryItems)
             {
@@ -23,22 +25,25 @@ namespace ReGaren.ReCore.Core.Items
                 {
                     case ItemId.Total_Biscuit_of_Rejuvenation:
                     case ItemId.Health_Potion:
-                        if (!MenuHelper.GetCheckBoxValue(ConfigList.CItems.Menu, "Items.Consumer.HealthPotion.Status")) continue;
+                        if (!MenuHelper.GetCheckBoxValue(Config.CItems.Menu, "Items.Consumer.HealthPotion.Status")) continue;
                         item.Cast();
                         ItemManager.SetLastUse(item.Id);
                         break;
+
                     case ItemId.Refillable_Potion:
-                        if (!MenuHelper.GetCheckBoxValue(ConfigList.CItems.Menu, "Items.Consumer.RefillablePotion.Status")) continue;
+                        if (!MenuHelper.GetCheckBoxValue(Config.CItems.Menu, "Items.Consumer.RefillablePotion.Status")) continue;
                         item.Cast();
                         ItemManager.SetLastUse(item.Id);
                         break;
+
                     case ItemId.Hunters_Potion:
-                        if (!MenuHelper.GetCheckBoxValue(ConfigList.CItems.Menu, "Items.Consumer.HuntersPotion.Status")) continue;
+                        if (!MenuHelper.GetCheckBoxValue(Config.CItems.Menu, "Items.Consumer.HuntersPotion.Status")) continue;
                         item.Cast();
                         ItemManager.SetLastUse(item.Id);
                         break;
+
                     case ItemId.Corrupting_Potion:
-                        if (!MenuHelper.GetCheckBoxValue(ConfigList.CItems.Menu, "Items.Consumer.CorruptingPotion.Status")) continue;
+                        if (!MenuHelper.GetCheckBoxValue(Config.CItems.Menu, "Items.Consumer.CorruptingPotion.Status")) continue;
                         item.Cast();
                         ItemManager.SetLastUse(item.Id);
                         break;

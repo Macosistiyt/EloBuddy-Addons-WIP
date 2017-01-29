@@ -13,21 +13,16 @@ namespace ReGaren
         public static Spell.Active W { get; private set; }
         public static Spell.Active E { get; private set; }
         public static Spell.Targeted R { get; private set; }
-        public static Spell.Targeted Ignite { get; private set; }
-        public static bool PlayerHasIgnite = true;
 
         public static List<Spell.SpellBase> AllSpells { get; private set; }
         public static Dictionary<SpellSlot, Color> ColorTranslation { get; private set; }
 
         static SpellManager()
         {
-            Q = new Spell.Active(SpellSlot.Q, 300);
-            W = new Spell.Active(SpellSlot.W, 20);
-            E = new Spell.Active(SpellSlot.E, 325);
+            Q = new Spell.Active(SpellSlot.Q, 175);
+            W = new Spell.Active(SpellSlot.W, 175);
+            E = new Spell.Active(SpellSlot.E, 330);
             R = new Spell.Targeted(SpellSlot.R, 400);
-            Ignite = new Spell.Targeted(Player.Instance.FindSummonerSpellSlotFromName("ignite"), 550);
-            if (Player.Instance.FindSummonerSpellSlotFromName("ignite") == SpellSlot.Unknown)
-                PlayerHasIgnite = false;
 
             AllSpells = new List<Spell.SpellBase>(new Spell.SpellBase[] { Q, W, E, R });
             ColorTranslation = new Dictionary<SpellSlot, Color>

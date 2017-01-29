@@ -11,7 +11,7 @@ using EloBuddy.SDK;
 using EloBuddy.SDK.Constants;
 using ReGaren.ReCore.Databases;
 using SharpDX;
-using ReGaren.ReCore.ConfigList;
+using ReGaren.ReCore.Config;
 using ReGaren.ReCore.Utility;
 
 namespace ReGaren.ReCore.Managers

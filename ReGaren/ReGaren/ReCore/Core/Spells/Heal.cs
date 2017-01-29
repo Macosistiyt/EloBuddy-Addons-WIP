@@ -1,7 +1,7 @@
 ﻿using EloBuddy;
 using System.Linq;
 using EloBuddy.SDK;
-using ReGaren.ReCore.ConfigList;
+using ReGaren.ReCore.Config;
 using ReGaren.ReCore.Managers;
 using ReGaren.ReCore.Utility;
 
@@ -11,7 +11,7 @@ namespace ReGaren.ReCore.Core.Spells
     {
         public void Execute()
         {
-            var enemies = Player.Instance.CountEnemyChampionsInRange(500);
+            var enemies = Player.Instance.CountEnemyChampionsInRange(MenuHelper.GetSliderValue(Config.Settings.Menu, "Settings.Range"));
             if (MenuHelper.GetCheckBoxValue(Protector.Menu, "Protector.Heal.Dangerous"))
             {
                 if (enemies > 0 && Player.Instance.IsInDanger(MenuHelper.GetSliderValue(Protector.Menu, "Protector.Heal.Health.Me")))
@@ -29,7 +29,7 @@ namespace ReGaren.ReCore.Core.Spells
         {
             if (!SummonerManager.Heal.IsReady() || !MenuHelper.GetCheckBoxValue(Protector.Menu, "Protector.Heal.Status"))
                 return false;
-            return false;
+            return true;
         }
 
         public void OnDraw()

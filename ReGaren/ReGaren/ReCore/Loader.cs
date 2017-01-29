@@ -2,7 +2,7 @@
 using EloBuddy.SDK;
 using EloBuddy.SDK.Menu;
 using EloBuddy.SDK.Menu.Values;
-using ReGaren.ReCore.ConfigList;
+using ReGaren.ReCore.Config;
 using ReGaren.ReCore.Managers;
 using ReGaren.ReCore.Utility;
 using System;
@@ -13,7 +13,7 @@ namespace ReGaren.ReCore
     {
         public static readonly Menu Menu;
         public static readonly CheckBox Status;
-        public static System.Version AssVersion { get { return System.Version.Parse("7.1.1"); } }
+        public static System.Version AssVersion { get { return System.Version.Parse("7.1.4"); } }
 
         static Loader()
         {
@@ -24,7 +24,7 @@ namespace ReGaren.ReCore
             ItemManager.Initialize();
             SummonerList.Initialize();
             ItemsList.Initialize();
-            Modes.Initialize();
+            Utility.Initialize();
             DangerManager.Initialize();
 
             Game.OnTick += OnTick;
@@ -39,7 +39,7 @@ namespace ReGaren.ReCore
 
         private static void OnTick(EventArgs args)
         {
-            if (Player.Instance.IsDead || Player.Instance.IsRecalling() || !Status.CurrentValue)
+            if (Player.Instance.IsDead || Player.Instance.IsRecalling() || !Status.CurrentValue || !TickLimiter.Check())
                 return;
 
             Core.SummonerUpdater.Update();
@@ -50,9 +50,9 @@ namespace ReGaren.ReCore
         {
         }
 
-        public static class Modes
+        public static class Utility
         {
-            static Modes()
+            static Utility()
             {
                 // Menu
                 Summoners.Initialize();

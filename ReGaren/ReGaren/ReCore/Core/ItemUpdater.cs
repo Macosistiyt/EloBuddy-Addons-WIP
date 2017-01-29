@@ -1,4 +1,5 @@
 ﻿using EloBuddy;
+using ReGaren.ReCore.Managers;
 using ReGaren.ReCore.Utility;
 using System;
 using System.Collections.Generic;

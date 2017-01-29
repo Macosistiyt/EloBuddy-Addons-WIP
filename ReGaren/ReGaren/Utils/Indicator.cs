@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using Color = System.Drawing.Color;
 
-namespace ReGaren.Utility
+namespace ReGaren.Utils
 {
     public static class Indicator
     {

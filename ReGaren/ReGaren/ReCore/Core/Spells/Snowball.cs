@@ -1,7 +1,7 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
 using System.Linq;
-using ReGaren.ReCore.ConfigList;
+using ReGaren.ReCore.Config;
 using ReGaren.ReCore.Managers;
 using ReGaren.ReCore.Utility;
 using System;

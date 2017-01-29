@@ -1,31 +1,32 @@
 ﻿using EloBuddy.SDK.Menu;
-using ReGaren.ConfigList;
+using ReGaren.Config;
 
 namespace ReGaren
 {
-    public static class Config
+    public static class MenuLoader
     {
         public static readonly Menu Menu;
 
-        static Config()
+        static MenuLoader()
         {
             Menu = MainMenu.AddMenu("ReGaren", "ReGaren");
             Menu.AddGroupLabel("Welcome to ReGaren!");
-            Modes.Initialize();
+            Utility.Initialize();
         }
 
         public static void Initialize()
         {
         }
 
-        public static class Modes
+        public static class Utility
         {
-            static Modes()
+            static Utility()
             {
                 // Menu
                 Combo.Initialize();
                 Drawing.Initialize();
                 Farm.Initialize();
+                Harass.Initialize();
                 Misc.Initialize();
             }
 

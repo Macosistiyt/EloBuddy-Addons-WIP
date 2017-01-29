@@ -2,7 +2,7 @@
 using EloBuddy.SDK.Menu.Values;
 using ReGaren.ReCore.Utility;
 
-namespace ReGaren.ReCore.ConfigList
+namespace ReGaren.ReCore.Config
 {
     public static class CItems
     {

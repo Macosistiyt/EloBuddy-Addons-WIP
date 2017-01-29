@@ -4,7 +4,7 @@ using EloBuddy.SDK.Menu.Values;
 using ReGaren.ReCore.Utility;
 using System.Linq;
 
-namespace ReGaren.ReCore.ConfigList
+namespace ReGaren.ReCore.Config
 {
     public static class OItems
     {
@@ -15,6 +15,19 @@ namespace ReGaren.ReCore.ConfigList
             Menu = Loader.Menu.AddSubMenu("Offensive items");
             Menu.AddGroupLabel("Offensive items settings");
 
+            #region Tiamat / Ravenous Hydra
+            Menu.AddGroupLabel("Tiamat / Ravenous Hydra");
+            Menu.CreateCheckBox("Use Tiamat / Ravenous Hydra", "Items.Offensive.Tiamat.Status");
+            Menu.CreateCheckBox("Use in combo", "Items.Offensive.Tiamat.Combo");
+            Menu.CreateCheckBox("Use in farm", "Items.Offensive.Tiamat.Farm");
+            Menu.AddSeparator(15);  
+            #endregion
+            #region Titanic Hydra
+            Menu.AddGroupLabel("Titanic Hydra");
+            Menu.CreateCheckBox("Use Titanic Hydra", "Items.Offensive.TitanicHydra.Status");
+            Menu.CreateSlider("Use only if target distance <= {0} units", "Items.TitanicHydra.Distance", 150, 100, 500);
+            Menu.AddSeparator(15);
+            #endregion
             #region Youmuu's Ghostblade
             Menu.AddGroupLabel("Youmuu's Ghostblade");
             Menu.CreateCheckBox("Use Youmuu's Ghostblade", "Items.Offensive.Youmuu.Status");
@@ -55,8 +68,28 @@ namespace ReGaren.ReCore.ConfigList
             Menu.CreateSlider("Use only if enemies near >= {0}", "Items.Offensive.Gunblade.Enemies", 1, 1, 5);
             Menu.AddSeparator(15);
             #endregion
+            #region Hextech GLP-800
+            Menu.AddGroupLabel("Hextech GLP-800");
+            Menu.CreateCheckBox("Use Hextech Hextech GLP-800", "Items.Offensive.HextechGLP.Status");
+            Menu.CreateCheckBox("Use only in combo mode", "Items.Offensive.HextechGLP.ComboOnly");
 
-            Menu.CreateSlider("Enemy champions detection range", "Items.Offensive.Range", 700, 300, 1000);
+            Menu.CreateSlider("Use only if my HP >= {0}%", "Items.Offensive.HextechGLP.Me.MinHealth", 35, 1, 100);
+            Menu.CreateSlider("Use only if target HP >= {0}%", "Items.Offensive.HextechGLP.Enemy.MinHealth", 50, 1, 100);
+            Menu.CreateSlider("Use only if enemies near >= {0}", "Items.Offensive.HextechGLP.Enemies", 1, 1, 5);
+            Menu.AddSeparator(15);
+            #endregion
+            #region Hextech Protobelt-01
+            Menu.AddGroupLabel("Hextech Protobelt-01");
+            Menu.CreateCheckBox("Use Hextech Hextech GLP-800", "Items.Offensive.Protobelt.Status");
+            Menu.CreateCheckBox("Use only in combo mode", "Items.Offensive.Protobelt.ComboOnly");
+            Menu.CreateCheckBox("Use when is wall between me and target", "Items.Offensive.Protobelt.EnableWall", false);
+            Menu.CreateCheckBox("Use versus melee champions", "Items.Offensive.Protobelt.Melee", false);
+
+            Menu.CreateSlider("Use only if my HP >= {0}%", "Items.Offensive.Protobelt.Me.MinHealth", 35, 1, 100);
+            Menu.CreateSlider("Use only if target HP >= {0}%", "Items.Offensive.Protobelt.Enemy.MinHealth", 50, 1, 100);
+            Menu.CreateSlider("Use only if enemies near >= {0}", "Items.Offensive.Protobelt.Enemies", 1, 1, 5);
+            Menu.AddSeparator(15);
+            #endregion
         }
 
         public static void Initialize()

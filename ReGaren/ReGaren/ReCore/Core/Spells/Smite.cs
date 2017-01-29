@@ -1,7 +1,7 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
 using System.Linq;
-using ReGaren.ReCore.ConfigList;
+using ReGaren.ReCore.Config;
 using ReGaren.ReCore.Managers;
 using ReGaren.ReCore.Utility;
 using System;
@@ -89,8 +89,8 @@ namespace ReGaren.ReCore.Core.Spells
             if (Summoners.Menu.GetCheckBoxValue("Summoners.Smite.Draw.Status"))
             {
                 SmiteStatusText.Position = Player.Instance.Position.WorldToScreen() - new Vector2(SmiteStatusText.Bounding.Width / 2f, -40);
-                SmiteStatusText.TextValue = "Smite status";
                 int charges = SummonerManager.Smite.Handle.Ammo;
+                SmiteStatusText.TextValue = $"({charges}) Smite status";
                 if (charges <= MenuHelper.GetSliderValue(Summoners.Menu, "Summoners.Smite.Keep.Count") && charges != 0)
                 {
                     SmiteStatusText.TextValue += " - KEEP SMITE";

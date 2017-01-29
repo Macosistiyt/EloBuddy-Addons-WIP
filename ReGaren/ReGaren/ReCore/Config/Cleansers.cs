@@ -3,7 +3,7 @@ using EloBuddy.SDK.Menu;
 using EloBuddy.SDK.Menu.Values;
 using ReGaren.ReCore.Utility;
 
-namespace ReGaren.ReCore.ConfigList
+namespace ReGaren.ReCore.Config
 {
     public static class Cleansers
     {
@@ -11,7 +11,8 @@ namespace ReGaren.ReCore.ConfigList
 
         static Cleansers()
         {
-            
+            Menu = Loader.Menu.AddSubMenu("Cleaners");
+            Menu.AddGroupLabel("Cleaners settings");
         }
 
         public static void Initialize()

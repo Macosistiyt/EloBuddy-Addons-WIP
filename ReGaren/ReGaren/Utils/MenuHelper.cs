@@ -7,19 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReGaren.ReCore.Utility
+namespace ReGaren.Utils
 {
-    public static class TickLimiter
-    {
-        private static int LastTick;
-        public static bool Check()
-        {
-            if (EloBuddy.SDK.Core.GameTickCount - LastTick < MenuHelper.GetSliderValue(Config.Settings.Menu, "Settings.Tick")) return false;
-            LastTick = EloBuddy.SDK.Core.GameTickCount;
-            return true;
-        }
-    }
-
     public static class MenuHelper
     {
         public static void CreateCheckBox(this Menu menu, string displayName, string uniqueIdentifer, bool defaultValue = true)
