@@ -21,7 +21,7 @@ namespace ReChoGath
                 try
                 {
                     var champ = Player.Instance.ChampionName;
-                    string OnlineVersion = new WebClient().DownloadString("https://raw.githubusercontent.com/Zierk59/EloBuddy-Addons-WIP/master/Re" + champ + "/Re" + champ + "/Properties/AssemblyInfo.cs");
+                    string OnlineVersion = new WebClient().DownloadString("https://raw.githubusercontent.com/Zierk59/EloBuddy-Addons-WIP/master/ReChoGath/ReChoGath/Properties/AssemblyInfo.cs");
                     var Match = new Regex(@"\[assembly\: AssemblyVersion\(""(\d+)\.(\d+)\.(\d+)""\)\]").Match(OnlineVersion);
 
                     if (Match.Success)

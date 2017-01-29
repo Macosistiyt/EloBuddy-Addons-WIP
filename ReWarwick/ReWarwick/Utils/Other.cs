@@ -24,6 +24,19 @@ namespace ReWarwick.Utils
             "SRU_Dragon_Air", "SRU_Dragon_Water", "SRU_Dragon_Fire", "SRU_Dragon_Elder", "SRU_Dragon_Earth"
         };
 
+        private static string[] ShieldNames =
+        {
+            "bansheesveil", "BlackShield", "SivirE", "NocturneShroudofDarkness", "itemmagekillerveil"
+        };
+
+        public static bool HasSpellshield(this AIHeroClient client)
+        {
+            foreach (var b in ShieldNames)
+                if (Player.Instance.HasBuff(b))
+                    return true;
+            return false;
+        }
+
         public static void ForceRUsage()
         {
             if (!SpellManager.R.IsReady()) return;
@@ -31,7 +44,7 @@ namespace ReWarwick.Utils
             var target = TargetSelector.SelectedTarget;
             if (target == null) return;
 
-            if (target.IsInRange(Player.Instance, SpellManager.R.Range) && !(target.HasBuff("bansheeveil") || target.HasBuff("BlackShield")))
+            if (target.IsInRange(Player.Instance, SpellManager.R.Range) && !target.HasSpellshield())
             {
                 if (!Config.Combo.Menu.GetCheckBoxValue("Config.Combo.R.IgnoreForce") && !Config.Combo.Menu.GetCheckBoxValue($"Config.Combo.R.Use.{target.ChampionName}")) return;
 

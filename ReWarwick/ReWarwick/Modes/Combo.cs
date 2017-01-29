@@ -36,7 +36,7 @@ namespace ReWarwick.Modes
 
             if (SpellManager.R.IsReady() && Config.Combo.Menu.GetCheckBoxValue("Config.Combo.R.Status") && target.IsInRange(Player.Instance, SpellManager.R.Range))
             {
-                if (Config.Combo.Menu.GetCheckBoxValue($"Config.Combo.R.Use.{target.ChampionName}") && !(target.HasBuff("bansheeveil") || target.HasBuff("BlackShield")) && target.HealthPercent >= Config.Combo.Menu.GetSliderValue("Config.Combo.R.TargetHealth"))
+                if (Config.Combo.Menu.GetCheckBoxValue($"Config.Combo.R.Use.{target.ChampionName}") && !target.HasSpellshield() && target.HealthPercent >= Config.Combo.Menu.GetSliderValue("Config.Combo.R.TargetHealth"))
                 {
                     var prediction = SpellManager.R.GetPrediction(target);
                     if (prediction.CastPosition.IsUnderEnemyTurret() && !Config.Combo.Menu.GetCheckBoxValue("Config.Combo.R.Dive")) return;
