@@ -27,9 +27,14 @@ namespace ReChoGath.Modes
 
             if (SpellManager.W.IsReady() && Config.Farm.Menu.GetCheckBoxValue("Config.Farm.W.Status") && Player.Instance.ManaPercent >= Config.Farm.Menu.GetSliderValue("Config.Farm.W.Mana"))
             {
-                var minions = SpellManager.W.GetBestConeCastPosition(monsters);
-                if (minions.HitNumber >= Config.Farm.Menu.GetSliderValue("Config.Farm.W.Hit"))
-                    SpellManager.W.Cast(minions.CastPosition);
+                var target = SpellManager.W.GetBestLinearCastPosition(monsters);
+                if (!Config.Farm.Menu.GetCheckBoxValue("Config.Farm.W.Ignore"))
+                {
+                    if (target.HitNumber >= Config.Farm.Menu.GetSliderValue("Config.Farm.W.Hit"))
+                        SpellManager.W.Cast(target.CastPosition);
+                }
+                else
+                    SpellManager.W.Cast(target.CastPosition);
             }
 
             if (Config.Farm.Menu.GetCheckBoxValue("Config.Farm.E.Status")) Other.SetSpikes(true);

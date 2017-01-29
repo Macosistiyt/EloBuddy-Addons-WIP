@@ -38,9 +38,9 @@ namespace ReChoGath.Modes
                 if (target.IsInRange(Player.Instance, SpellManager.W.Range)) Other.SetSpikes(true);
             }
 
-            if (SpellManager.R.IsReady() && Config.Combo.Menu.GetCheckBoxValue("Config.Combo.R.Status") && target.IsInRange(Player.Instance, SpellManager.R.Range))
+            if (SpellManager.R.IsReady() && Config.Combo.Menu.GetCheckBoxValue("Config.Combo.R.Status") && target.IsInRange(Player.Instance, SpellManager.R.Range) && !target.HasSpellshield())
             {
-                if (Config.Combo.Menu.GetCheckBoxValue("Config.Combo.R.Killable") && target.TotalShieldHealth() + 5 >= Damage.GetRDamage(target)) return;
+                if (Config.Combo.Menu.GetCheckBoxValue("Config.Combo.R.Killable") && target.TotalShieldHealth() + 5 > Damage.GetRDamage(target)) return;
                 SpellManager.R.Cast(target);
             }
         }

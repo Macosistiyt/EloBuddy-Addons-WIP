@@ -24,6 +24,11 @@ namespace ReChoGath.Utils
             "SRU_Dragon_Air", "SRU_Dragon_Water", "SRU_Dragon_Fire", "SRU_Dragon_Elder", "SRU_Dragon_Earth"
         };
 
+        private static string[] ShieldNames =
+        {
+            "bansheesveil", "BlackShield", "SivirE", "NocturneShroudofDarkness", "itemmagekillerveil"
+        };
+
         public static void SetSpikes(bool new_status)
         {
             switch (new_status)
@@ -43,9 +48,16 @@ namespace ReChoGath.Utils
             return 0;
         }
 
+        public static bool HasSpellshield(this AIHeroClient client)
+        {
+            foreach (var b in ShieldNames)
+                if (Player.Instance.HasBuff(b))
+                    return true;
+            return false;
+        }
+
         public static void FlashR(Obj_AI_Base target) // best combo btw Kappa
         {
-            Console.WriteLine(Damage.GetRDamage(target));
             if (!SpellManager.PlayerHasFlash || !SpellManager.Flash.IsReady() || !SpellManager.R.IsReady() || target.TotalShieldHealth() + 5 > Damage.GetRDamage(target)) return;
 
             var position = Player.Instance.Position.Extend(target, SpellManager.Flash.Range).To3D();
@@ -53,6 +65,12 @@ namespace ReChoGath.Utils
 
             SpellManager.Flash.Cast(position);
             Core.DelayAction(() => SpellManager.R.Cast(target), 250);
+            Orbwalker.DisableMovement = true;
+
+            Core.DelayAction(delegate 
+            {
+                Orbwalker.DisableMovement = false;
+            }, 500);
         }
     }
 }

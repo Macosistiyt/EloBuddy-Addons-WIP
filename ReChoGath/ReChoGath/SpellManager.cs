@@ -22,10 +22,10 @@ namespace ReChoGath
 
         static SpellManager()
         {
-            Q = new Spell.Skillshot(SpellSlot.Q, 950, SkillShotType.Circular, 750, int.MaxValue, 175);
-            W = new Spell.Skillshot(SpellSlot.W, 650, SkillShotType.Cone, 250, 1750, 100);
+            Q = new Spell.Skillshot(SpellSlot.Q, 950, SkillShotType.Circular, 750, int.MaxValue, 175, DamageType.Magical);
+            W = new Spell.Skillshot(SpellSlot.W, 650, SkillShotType.Cone, 250, 1750, 100, DamageType.Magical);
             E = new Spell.Active(SpellSlot.E);
-            R = new Spell.Targeted(SpellSlot.R, 225);
+            R = new Spell.Targeted(SpellSlot.R, 175, DamageType.True);
 
             var flash = Player.Spells.FirstOrDefault(s => s.Name.ToLower().Contains("summonerflash"));
             if (flash != null)

@@ -1,6 +1,8 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
 using ReChoGath.Utils;
+using System;
+using System.Linq;
 
 namespace ReChoGath.Modes
 {
@@ -17,7 +19,7 @@ namespace ReChoGath.Modes
 
             if (SpellManager.W.IsReady() && Config.Farm.Menu.GetCheckBoxValue("Config.Farm.W.Status") && Player.Instance.ManaPercent >= Config.Farm.Menu.GetSliderValue("Config.Farm.W.Mana"))
             {
-                var minions = SpellManager.W.GetBestConeCastPosition(EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, Player.Instance.ServerPosition, SpellManager.W.Range));
+                var minions = SpellManager.W.GetBestLinearCastPosition(EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy, Player.Instance.ServerPosition, SpellManager.W.Range));
                 if (minions.HitNumber >= Config.Farm.Menu.GetSliderValue("Config.Farm.W.Hit"))
                     SpellManager.W.Cast(minions.CastPosition);
             }

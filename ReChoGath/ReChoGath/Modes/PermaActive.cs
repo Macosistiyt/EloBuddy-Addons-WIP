@@ -55,10 +55,24 @@ namespace ReChoGath.Modes
                     break;
                 }
 
-                if (Config.Misc.Menu.GetCheckBoxValue("Config.Misc.KillSteal.R") && SpellManager.R.IsReady() && health <= Damage.GetRDamage(e) && e.IsInRange(Player.Instance, SpellManager.R.Range))
+                if (Config.Misc.Menu.GetCheckBoxValue("Config.Misc.KillSteal.R") && SpellManager.R.IsReady() && e.TotalShieldHealth() + 5 <= Damage.GetRDamage(e) && e.IsInRange(Player.Instance, SpellManager.R.Range))
                 {
                     SpellManager.R.Cast(e);
                     break;
+                }
+            }
+            #endregion
+            #region Jungle steal
+            if (SpellManager.R.IsReady() && Config.Farm.Menu.GetCheckBoxValue("Config.Farm.R.Status") && Config.Farm.Menu.GetCheckBoxValue("Config.Farm.R.Steal"))
+            {
+                var monsters = EntityManager.MinionsAndMonsters.GetJungleMonsters(Player.Instance.Position, SpellManager.Q.Range);
+                if (monsters != null && monsters.Any())
+                {
+                    foreach (var e in monsters.Where(t => t.IsInRange(Player.Instance, SpellManager.R.Range) && Other.BigMonsters.Contains(t.BaseSkinName)))
+                    {
+                        if (e.Health + 3 <= Damage.GetRDamage(e) && Config.Farm.Menu.GetCheckBoxValue($"Config.Farm.R.Monster.{e.BaseSkinName}"))
+                            SpellManager.R.Cast(e);
+                    }
                 }
             }
             #endregion
@@ -79,19 +93,6 @@ namespace ReChoGath.Modes
                 var predition = SpellManager.W.GetPrediction(target);
                 if (predition.HitChancePercent >= Config.Harass.Menu.GetSliderValue("Config.Harass.W.HitChance"))
                     SpellManager.E.Cast(predition.CastPosition);
-            }
-            #endregion
-            #region Jungle steal
-            if (SpellManager.R.IsReady() && Config.Farm.Menu.GetCheckBoxValue("Config.Farm.R.Status") && Config.Farm.Menu.GetCheckBoxValue("Config.Farm.R.Steal"))
-            {
-                var monsters = EntityManager.MinionsAndMonsters.GetJungleMonsters(Player.Instance.Position, SpellManager.Q.Range);
-                if (monsters == null || !monsters.Any()) return;
-
-                foreach (var e in monsters.Where(t => t.IsInRange(Player.Instance, SpellManager.R.Range) && Other.BigMonsters.Contains(t.BaseSkinName)))
-                {
-                    if (e.Health + 3 <= Damage.GetRDamage(e) && Config.Farm.Menu.GetCheckBoxValue($"Config.Farm.R.Monster.{e.BaseSkinName}"))
-                        SpellManager.R.Cast(e);
-                }
             }
             #endregion
         }

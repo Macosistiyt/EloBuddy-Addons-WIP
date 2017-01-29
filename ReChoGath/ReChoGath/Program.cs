@@ -116,7 +116,7 @@ namespace ReChoGath
                 {
                     foreach (var e in EntityManager.Heroes.Enemies.Where(h => h.IsValid && h.IsAlive() && !h.IsInvulnerable && h.IsInRange(Player.Instance, SpellManager.R.Range + SpellManager.Flash.Range - 50)))
                     {
-                        if (e.Distance(Player.Instance) >= SpellManager.R.Range + 200)
+                        if (!e.HasSpellshield() && e.Distance(Player.Instance) >= SpellManager.R.Range + 200)
                         {
                             Other.FlashR(e);
                             break;
