@@ -26,13 +26,11 @@ namespace ReGaren.ReCore.Core.Items
                 switch (item.Id)
                 {
                     case ItemId.Zhonyas_Hourglass:
-                        Console.WriteLine($"{EloBuddy.SDK.Core.GameTickCount} | Allies: {allies} | Enemies: {enemies} | HP: {Player.Instance.HealthPercent}");
                         if (!MenuHelper.GetCheckBoxValue(Config.DItems.Menu, "Items.Deffensive.Zhonya.Status")) continue;
                         if (MenuHelper.GetCheckBoxValue(Config.DItems.Menu, "Items.Deffensive.Zhonya.ComboOnly") && !Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo)) continue;
                         if (enemies < MenuHelper.GetSliderValue(Config.DItems.Menu, "Items.Deffensive.Zhonya.Enemies") || allies < MenuHelper.GetSliderValue(Config.DItems.Menu, "Items.Deffensive.Zhonya.Allies")) continue;
                         if (Player.Instance.HealthPercent > MenuHelper.GetSliderValue(Config.DItems.Menu, "Items.Deffensive.Zhonya.Me.MinHealth")) continue;
                         item.Cast();
-                        Console.WriteLine($"USE THIS FUCKIN ZHONYA");
                         ItemManager.SetLastUse(item.Id);
                         break;
 
