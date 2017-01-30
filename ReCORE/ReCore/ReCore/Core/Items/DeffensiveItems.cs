@@ -1,7 +1,7 @@
 ﻿using EloBuddy;
 using EloBuddy.SDK;
-using ReGaren.ReCore.Managers;
-using ReGaren.ReCore.Utility;
+using ReCORE.ReCore.Managers;
+using ReCORE.ReCore.Utility;
 using SharpDX;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReGaren.ReCore.Core.Items
+namespace ReCORE.ReCore.Core.Items
 {
     class DeffensiveItems : IItem
     {
@@ -17,22 +17,20 @@ namespace ReGaren.ReCore.Core.Items
         {
             var target = TargetSelector.GetTarget(700.0f, DamageType.Mixed, Player.Instance.Position);
             int enemies = Player.Instance.CountEnemyChampionsInRange(MenuHelper.GetSliderValue(Config.Settings.Menu, "Settings.Range")),
-                allies = Player.Instance.CountAllyChampionsInRange(MenuHelper.GetSliderValue(Config.Settings.Menu, "Settings.Range")) - 1;
+                allies = Player.Instance.CountAllyChampionsInRange(MenuHelper.GetSliderValue(Config.Settings.Menu, "Settings.Range"));
 
             foreach (var item in Player.Instance.InventoryItems)
-            {
+            { 
                 if (EloBuddy.SDK.Core.GameTickCount - ItemManager.GetLastUse(item.Id) < 500 || !item.CanUseItem()) continue;
 
                 switch (item.Id)
                 {
                     case ItemId.Zhonyas_Hourglass:
-                        Console.WriteLine($"{EloBuddy.SDK.Core.GameTickCount} | Allies: {allies} | Enemies: {enemies} | HP: {Player.Instance.HealthPercent}");
                         if (!MenuHelper.GetCheckBoxValue(Config.DItems.Menu, "Items.Deffensive.Zhonya.Status")) continue;
                         if (MenuHelper.GetCheckBoxValue(Config.DItems.Menu, "Items.Deffensive.Zhonya.ComboOnly") && !Orbwalker.ActiveModesFlags.HasFlag(Orbwalker.ActiveModes.Combo)) continue;
                         if (enemies < MenuHelper.GetSliderValue(Config.DItems.Menu, "Items.Deffensive.Zhonya.Enemies") || allies < MenuHelper.GetSliderValue(Config.DItems.Menu, "Items.Deffensive.Zhonya.Allies")) continue;
                         if (Player.Instance.HealthPercent > MenuHelper.GetSliderValue(Config.DItems.Menu, "Items.Deffensive.Zhonya.Me.MinHealth")) continue;
                         item.Cast();
-                        Console.WriteLine($"USE THIS FUCKIN ZHONYA");
                         ItemManager.SetLastUse(item.Id);
                         break;
 
@@ -68,7 +66,7 @@ namespace ReGaren.ReCore.Core.Items
                             continue;
                         }
 
-                        foreach (var a in EloBuddy.SDK.EntityManager.Heroes.Allies.Where(a => !a.IsMe))
+                        foreach (var a in EloBuddy.SDK.EntityManager.Heroes.Allies.Where(a => !a.IsMe && !a.IsDead && a.IsInDanger(50) && a.IsInRange(Player.Instance, 1050)))
                         {
                             if (MenuHelper.GetCheckBoxValue(Config.DItems.Menu, $"Items.Deffensive.Fotm.Use.{a.ChampionName}") && a.HealthPercent <= MenuHelper.GetSliderValue(Config.DItems.Menu, "Items.Deffensive.Fotm.Ally.MinHealth"))
                             {

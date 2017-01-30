@@ -22,7 +22,7 @@ namespace ReChoGath
         {
             if (Player.Instance.ChampionName != "Chogath") return;
             
-            //VersionChecker.Check();
+            VersionChecker.Check();
             Loader.Initialize(); // ReCore BETA
             Humanizer.Initialize();
             MenuLoader.Initialize();
@@ -114,9 +114,9 @@ namespace ReChoGath
                 Console.WriteLine(SpellManager.Flash.Range);
                 if (SpellManager.R.IsReady() && SpellManager.Flash.IsReady())
                 {
-                    foreach (var e in EntityManager.Heroes.Enemies.Where(h => h.IsValid && h.IsAlive() && !h.IsInvulnerable && h.IsInRange(Player.Instance, SpellManager.R.Range + SpellManager.Flash.Range - 50)))
+                    foreach (var e in EntityManager.Heroes.Enemies.Where(h => h.IsValid && h.IsAlive() && !h.IsInvulnerable))
                     {
-                        if (!e.HasSpellshield() && e.Distance(Player.Instance) >= SpellManager.R.Range + 200)
+                        if (!e.HasSpellshield() && e.IsInRange(Player.Instance, SpellManager.R.Range + 200))
                         {
                             Other.FlashR(e);
                             break;
