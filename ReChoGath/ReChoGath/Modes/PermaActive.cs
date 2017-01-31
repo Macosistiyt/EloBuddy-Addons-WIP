@@ -42,7 +42,7 @@ namespace ReChoGath.Modes
             #region KillSteal
             foreach (var e in EntityManager.Heroes.Enemies.Where(h => h.IsValid && h.IsAlive() && h.IsInRange(Player.Instance.Position, SpellManager.Q.Range) && !h.IsInvulnerable))
             {
-                float health = Prediction.Health.GetPrediction(e, 500);
+                float health = Prediction.Health.GetPrediction(e, 250);
                 if (Config.Misc.Menu.GetCheckBoxValue("Config.Misc.KillSteal.Q") && SpellManager.Q.IsReady() && health <= Damage.GetQDamage(e))
                 {
                     SpellManager.Q.Cast(SpellManager.Q.GetPrediction(e).CastPosition);
@@ -55,7 +55,7 @@ namespace ReChoGath.Modes
                     break;
                 }
 
-                if (Config.Misc.Menu.GetCheckBoxValue("Config.Misc.KillSteal.R") && SpellManager.R.IsReady() && e.TotalShieldHealth() + 5 <= Damage.GetRDamage(e) && e.IsInRange(Player.Instance, SpellManager.R.Range))
+                if (Config.Misc.Menu.GetCheckBoxValue("Config.Misc.KillSteal.R") && SpellManager.R.IsReady() && health + 5 <= Damage.GetRDamage(e) && e.IsInRange(Player.Instance, SpellManager.R.Range))
                 {
                     SpellManager.R.Cast(e);
                     break;
@@ -78,7 +78,7 @@ namespace ReChoGath.Modes
             #endregion
             #region Auto harass
             var target = TargetSelector.GetTarget(SpellManager.Q.Range, DamageType.Mixed);
-            if (target == null) return;
+            if (target == null || target.IsDead) return;
             if (Player.Instance.Position.IsUnderEnemyTurret() || Player.Instance.Position.IsGrass() && Player.Instance.CountAllyChampionsInRange(150) >= 1 && !target.Position.IsGrass()) return; // anti trap destroyer Fappa
 
             if (chance(Config.Harass.Menu.GetSliderValue("Config.AutoHarass.Q.Chance")) && Config.Harass.Menu.GetCheckBoxValue("Config.AutoHarass.Q.Status") && SpellManager.Q.IsReady() && Player.Instance.ManaPercent >= Config.Harass.Menu.GetSliderValue("Config.Harass.Q.Mana"))
@@ -92,7 +92,7 @@ namespace ReChoGath.Modes
             {
                 var predition = SpellManager.W.GetPrediction(target);
                 if (predition.HitChancePercent >= Config.Harass.Menu.GetSliderValue("Config.Harass.W.HitChance"))
-                    SpellManager.E.Cast(predition.CastPosition);
+                    SpellManager.W.Cast(predition.CastPosition);
             }
             #endregion
         }

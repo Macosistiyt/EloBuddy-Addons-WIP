@@ -44,6 +44,8 @@ namespace ReCORE.ReCore
             Core.SummonerUpdater.Update();
             Core.ItemUpdater.Update();
             Core.UtilsUpdater.Update();
+
+            //Console.WriteLine($"X: {Player.Instance.Position.X} | Y: {Player.Instance.Position.Y}");
         }
 
         public static void Initialize()

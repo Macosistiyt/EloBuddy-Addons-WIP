@@ -34,8 +34,15 @@ namespace ReChoGath
 
             Gapcloser.OnGapcloser += Gapcloser_OnGapcloser;
             Interrupter.OnInterruptableSpell += Interrupter_OnInterruptableSpell;
+            Orbwalker.OnAttack += Orbwalker_OnAttack;
 
             Chat.Print("<font color='#FFFFFF'>ReChoGath v." + VersionChecker.AssVersion + " has been loaded.</font>");
+        }
+
+        public static int LastAttack = Core.GameTickCount;
+        private static void Orbwalker_OnAttack(AttackableUnit target, EventArgs args)
+        {
+            LastAttack = Core.GameTickCount;
         }
 
         private static void OnEndScene(EventArgs args)
@@ -50,6 +57,8 @@ namespace ReChoGath
         {
             if (Player.Instance.IsDead || Player.Instance.IsRecalling()) 
                 return;
+
+            if (Core.GameTickCount - LastAttack > 5000) Other.SetSpikes(false);
 
             PermaActive.Execute();
             var flags = Orbwalker.ActiveModesFlags;
@@ -111,7 +120,6 @@ namespace ReChoGath
             }
             if (Config.Combo.Menu.GetKeyBindValue("Config.Combo.R.FlashR"))
             {
-                Console.WriteLine(SpellManager.Flash.Range);
                 if (SpellManager.R.IsReady() && SpellManager.Flash.IsReady())
                 {
                     foreach (var e in EntityManager.Heroes.Enemies.Where(h => h.IsValid && h.IsAlive() && !h.IsInvulnerable))

@@ -29,7 +29,7 @@ namespace ReChoGath.Config
             Menu.CreateSlider("Additional random delay in (ms).", "Misc.Humanizer.RandomDelay", 75, 50, 100);
 
             Menu.AddGroupLabel("Another settings");
-            Menu.CreateCheckBox("Use Q on stunned / slowed / rooted etc. enemy", "Config.Misc.Another.Q.AlwaysStun");
+            Menu.CreateCheckBox("Auto Q on immobile targets", "Config.Misc.Another.Q.AlwaysStun");
             Menu.CreateCheckBox("Enable Anti-Gapcloser", "Config.Misc.Another.Gapcloser");
             Menu.CreateCheckBox("Enable Interrupter", "Config.Misc.Another.Interrupter");
             Menu.CreateSlider("Anti-Gapcloser / Interrupter cast delay", "Config.Misc.Another.Delay", 0, 0, 500);
